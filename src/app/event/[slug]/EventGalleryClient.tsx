@@ -4,13 +4,11 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 
-// Mosaic pattern — 3-column grid, repeats every 6 images
 const MOSAIC: { col: string; row: string }[] = [
   { col: 'span 2', row: 'span 2' },
   { col: 'span 1', row: 'span 1' },
   { col: 'span 1', row: 'span 1' },
   { col: 'span 1', row: 'span 1' },
-  { col: 'span 1', row: 'span 2' },
   { col: 'span 2', row: 'span 1' },
 ]
 

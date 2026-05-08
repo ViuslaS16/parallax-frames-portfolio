@@ -3,12 +3,13 @@ import {structureTool} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './src/sanity/schemaTypes'
 import {s3Files} from 'sanity-plugin-s3-files'
+import {projectId, dataset} from './src/sanity/env'
 
 export default defineConfig({
   name: 'default',
-  title: 'parallax-frames-portfolio',
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '',
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
+  title: 'Parallax Frames',
+  projectId,
+  dataset,
   basePath: '/studio',
   plugins: [
     structureTool(),

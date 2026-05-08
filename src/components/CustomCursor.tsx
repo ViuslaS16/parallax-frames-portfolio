@@ -28,12 +28,22 @@ export default function CustomCursor() {
 
   return (
     <motion.div
-      className="fixed top-0 left-0 w-4 h-4 bg-white rounded-full mix-blend-difference pointer-events-none z-[9999] hidden lg:block"
+      className="fixed top-0 left-0 w-8 h-8 -ml-4 -mt-4 mix-blend-difference pointer-events-none z-[9999] hidden lg:flex items-center justify-center"
       animate={{
-        x: mousePosition.x - 8,
-        y: mousePosition.y - 8,
+        x: mousePosition.x,
+        y: mousePosition.y,
       }}
       transition={{ type: "tween", ease: "backOut", duration: 0.15 }}
-    />
+    >
+      {/* Fixed inner dot */}
+      <div className="w-3 h-3 bg-white rounded-full absolute" />
+
+      {/* Pulsing outer circle */}
+      <motion.div
+        className="w-8 h-8 border border-white rounded-full absolute"
+        animate={{ scale: [1, 1.8], opacity: [0.8, 0] }}
+        transition={{ duration: 1.5, repeat: Infinity, ease: "easeOut" }}
+      />
+    </motion.div>
   );
 }

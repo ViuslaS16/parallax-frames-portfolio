@@ -148,8 +148,6 @@ function BookingSection() {
             Let&apos;s work<br />together.
           </h2>
           <p className="mt-6 text-sm text-zinc-500 leading-relaxed">
-            Currently accepting bookings from{' '}
-            <span className="text-white">Q3 2026</span> onwards.
             Fill out the form and a WhatsApp message will open to{' '}
             <span className="text-white">Parallax Frames Mobile</span>.
           </p>
@@ -298,7 +296,7 @@ export default function Backstage() {
           >
             Parallax Frames · Photography
           </motion.p>
-          <h1 className="text-[16vw] md:text-[14vw] font-black uppercase tracking-tighter leading-none overflow-hidden select-none">
+          <h1 className="text-[10.5vw] sm:text-[12vw] md:text-[14vw] font-black uppercase tracking-tighter leading-none overflow-hidden select-none whitespace-nowrap">
             <SplitTitle text="Backstage" />
           </h1>
           <motion.p

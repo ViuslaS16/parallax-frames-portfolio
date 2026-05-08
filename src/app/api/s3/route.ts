@@ -16,6 +16,19 @@ function getRandomKey() {
   return Math.random().toFixed(10).replace('0.', '');
 }
 
+export async function GET() {
+  return NextResponse.json({
+    status: 'ok',
+    env: {
+      S3_ENDPOINT: process.env.S3_ENDPOINT ? 'Defined' : 'MISSING',
+      S3_BUCKET: process.env.S3_BUCKET ? 'Defined' : 'MISSING',
+      PUBLIC_R2_URL: process.env.PUBLIC_R2_URL ? 'Defined' : 'MISSING',
+      NEXT_PUBLIC_R2_URL: process.env.NEXT_PUBLIC_R2_URL ? 'Defined' : 'MISSING',
+      NEXT_PUBLIC_SANITY_PROJECT_ID: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ? 'Defined' : 'MISSING',
+    }
+  });
+}
+
 export async function OPTIONS() {
   return new NextResponse(null, {
     status: 200,
@@ -73,7 +86,13 @@ export async function POST(req: Request) {
 
       console.log('Generated fileURL:', fileURL);
 
-      return NextResponse.json({ url, fileURL }, {
+      return NextResponse.json({ 
+        url, 
+        signedUrl: url,
+        fileURL, 
+        fileUrl: fileURL,
+        publicUrl: fileURL 
+      }, {
         headers: { 'Access-Control-Allow-Origin': '*' }
       });
     }

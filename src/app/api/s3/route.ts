@@ -31,31 +31,47 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
     
+    // Logging for debugging in Vercel (will show in Vercel Logs)
+    console.log('S3 API Request Body:', JSON.stringify(body));
+    console.log('S3_ENDPOINT:', process.env.S3_ENDPOINT ? 'Configured' : 'MISSING');
+    console.log('PUBLIC_R2_URL:', process.env.PUBLIC_R2_URL ? 'Configured' : 'MISSING');
+    console.log('NEXT_PUBLIC_R2_URL:', process.env.NEXT_PUBLIC_R2_URL ? 'Configured' : 'MISSING');
+
     // Fallback to environment variables if the plugin doesn't provide them
     const bucketKey = body.bucketKey || process.env.S3_BUCKET;
 
     if (!bucketKey) {
+      console.error('Missing bucketKey');
       return NextResponse.json({ message: 'Missing bucketKey' }, { status: 400 });
     }
 
     /** SIGNED URL CREATION */
     if ('fileName' in body) {
       const { contentType, fileName } = body;
-      const fileKey = fileName || `${getRandomKey()}-${getRandomKey()}-${contentType || 'unknown-type'}`;
+      // Use provided fileName or generate one
+      const fileKey = fileName || `${getRandomKey()}-${getRandomKey()}-${(contentType || 'image/jpeg').split('/')[1]}`;
 
       const createSignedUrl = new PutObjectCommand({
         Bucket: bucketKey,
         Key: fileKey,
-        ContentType: contentType,
+        ContentType: contentType || 'image/jpeg',
       });
 
       const url = await getSignedUrl(s3Client, createSignedUrl, { expiresIn: 3600 });
 
       // Build the public fileURL using the R2 public domain
-      const publicBase = process.env.PUBLIC_R2_URL;
-      const fileURL = publicBase
-        ? `${publicBase.replace(/\/$/, '')}/${fileKey}`
-        : url.split('?')[0]; // fallback: strip query params from signed URL
+      // Try both prefixed and non-prefixed env vars
+      const publicBase = process.env.NEXT_PUBLIC_R2_URL || process.env.PUBLIC_R2_URL;
+      
+      let fileURL = '';
+      if (publicBase) {
+        fileURL = `${publicBase.replace(/\/$/, '')}/${fileKey}`;
+      } else {
+        // Fallback: strip query params from signed URL
+        fileURL = url.split('?')[0];
+      }
+
+      console.log('Generated fileURL:', fileURL);
 
       return NextResponse.json({ url, fileURL }, {
         headers: { 'Access-Control-Allow-Origin': '*' }

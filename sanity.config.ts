@@ -18,8 +18,8 @@ export default defineConfig({
       credentials: {
         bucketKey: 'josa-assets',
         bucketRegion: 'auto',
-        getSignedUrlEndpoint: '/api/s3',
-        deleteObjectEndpoint: '/api/s3',
+        getSignedUrlEndpoint: typeof window !== 'undefined' ? `${window.location.origin}/api/s3` : '',
+        deleteObjectEndpoint: typeof window !== 'undefined' ? `${window.location.origin}/api/s3` : '',
         folder: '',
         secretForValidating: '',
       },

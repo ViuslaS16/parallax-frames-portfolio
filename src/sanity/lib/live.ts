@@ -6,4 +6,7 @@ import { client } from './client'
 
 export const { sanityFetch, SanityLive } = defineLive({
   client,
+  // Required for Live Content API WebSocket in production.
+  // Set NEXT_PUBLIC_SANITY_API_READ_TOKEN in Vercel env vars (use a "Viewer" token from sanity.io/manage).
+  browserToken: process.env.NEXT_PUBLIC_SANITY_API_READ_TOKEN,
 });

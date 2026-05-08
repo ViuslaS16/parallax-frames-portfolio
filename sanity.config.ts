@@ -21,7 +21,8 @@ export default defineConfig({
         deleteObjectEndpoint: typeof window !== 'undefined' ? `${window.location.origin}/api/s3` : 'http://localhost:3002/api/s3',
         folder: '',
         secretForValidating: '',
-      }
+      },
+      publicUrl: process.env.NEXT_PUBLIC_R2_URL || process.env.PUBLIC_R2_URL,
     })
   ],
   schema: {

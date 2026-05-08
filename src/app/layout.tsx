@@ -4,6 +4,7 @@ import "./globals.css";
 import SmoothScrolling from "@/components/SmoothScrolling";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import CustomCursor from "@/components/CustomCursor";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -26,7 +27,8 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-background text-foreground">
+      <body className="min-h-full flex flex-col bg-background text-foreground lg:cursor-none">
+        <CustomCursor />
         <SmoothScrolling>
           <Navigation />
           {children}

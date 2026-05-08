@@ -21,6 +21,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Hide default cursor on desktop */
+@media (min-width: 1024px) {
+  * {
+    cursor: none !important;
+  }
+}
+
 /* Lenis Recommended Styles */
 html.lenis, html.lenis body {
   height: auto;

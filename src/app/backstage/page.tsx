@@ -84,12 +84,6 @@ export const SOCIALS = [
   },
 ]
 
-const GEAR = [
-  { label: 'Primary',    items: ['Sony a7S III', '24–70mm f/2.8 GM', '35mm f/1.4 GM'] },
-  { label: 'Secondary',  items: ['Leica Q2 Monochrom'] },
-  { label: 'Lighting',   items: ['Profoto A10', '1/8 CTO Gels'] },
-]
-
 const CITIES = [
   // Sri Lanka
   'Colombo', 'Gampaha', 'Kandy', 'Galle', 'Negombo',
@@ -285,8 +279,16 @@ export default function Backstage() {
       />
 
       {/* ── Hero ────────────────────────────────────────────── */}
-      <section ref={heroRef} className="min-h-screen flex flex-col justify-end relative overflow-hidden pb-16 px-6 md:px-12">
-        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(circle at 60% 40%, rgba(255,255,255,0.04) 0%, rgba(5,5,5,1) 70%)' }} />
+      <section ref={heroRef} className="min-h-[100svh] flex flex-col justify-center md:justify-end relative overflow-hidden pb-16 pt-32 md:pt-0 px-6 md:px-12">
+        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(circle at 50% 50%, rgba(255,255,255,0.05) 0%, rgba(5,5,5,1) 70%)' }} />
+        
+        {/* Subtle decorative circles to fill empty space */}
+        <div className="absolute inset-0 pointer-events-none flex items-center justify-center opacity-20 md:hidden">
+          <div className="w-[150vw] h-[150vw] border-[1px] border-zinc-800 rounded-full absolute" />
+          <div className="w-[100vw] h-[100vw] border-[1px] border-zinc-800 rounded-full absolute" />
+          <div className="w-[50vw] h-[50vw] border-[1px] border-zinc-800 rounded-full absolute" />
+        </div>
+
         <motion.div style={{ y: heroY, opacity: heroOpacity }} className="relative z-10">
           <motion.p
             initial={{ opacity: 0, y: 12 }}
@@ -409,27 +411,6 @@ export default function Backstage() {
 
       {/* ── Booking ─────────────────────────────────────────── */}
       <BookingSection />
-
-      <div className="mx-6 md:mx-12 border-t border-zinc-900" />
-
-      {/* ── Gear ────────────────────────────────────────────── */}
-      <section className="py-16 px-6 md:px-12">
-        <div className="max-w-7xl mx-auto">
-          <FadeUp>
-            <p className="text-xs tracking-[0.4em] uppercase text-zinc-500 mb-10">Equipment</p>
-          </FadeUp>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-10">
-            {GEAR.map((cat, i) => (
-              <FadeUp key={cat.label} delay={i * 0.08}>
-                <p className="text-[10px] tracking-[0.35em] uppercase text-zinc-700 mb-4">{cat.label}</p>
-                <ul className="space-y-2">
-                  {cat.items.map((g) => <li key={g} className="text-sm text-zinc-400">{g}</li>)}
-                </ul>
-              </FadeUp>
-            ))}
-          </div>
-        </div>
-      </section>
 
       <div className="h-24" />
     </main>

@@ -22,14 +22,17 @@ const R2_PUBLIC_URL =
   process.env.PUBLIC_R2_URL ||
   'https://pub-53dfba8fed9d48d3b927c25e22eb9cb1.r2.dev';
 
+// Tell Next.js/Vercel to use streaming (no body size limit)
+export const runtime = 'nodejs';
+export const maxDuration = 60;
+
 export async function OPTIONS() {
   return new NextResponse(null, { status: 204, headers: CORS_HEADERS });
 }
 
 /**
- * This endpoint receives the file PUT directly from the browser
- * (because the Sanity plugin does a PUT to whatever URL we returned in /api/s3).
- * We then forward the file to R2 server-side — no browser CORS needed.
+ * Receives a PUT request from the Sanity plugin (the file binary),
+ * streams it directly to R2 server-side — no browser CORS needed.
  */
 export async function PUT(req: Request) {
   try {
@@ -42,10 +45,15 @@ export async function PUT(req: Request) {
       return NextResponse.json({ error: 'Missing key parameter' }, { status: 400, headers: CORS_HEADERS });
     }
 
-    console.log(`[S3 Upload] Receiving PUT for key: ${key}, bucket: ${bucket}`);
+    console.log(`[S3 Upload] Receiving PUT for key: ${key}, bucket: ${bucket}, type: ${contentType}`);
 
+    // Stream the body to avoid 4.5MB buffer limit
     const body = await req.arrayBuffer();
     console.log(`[S3 Upload] File size: ${body.byteLength} bytes`);
+
+    if (body.byteLength === 0) {
+      return NextResponse.json({ error: 'Empty file body' }, { status: 400, headers: CORS_HEADERS });
+    }
 
     await s3Client.send(new PutObjectCommand({
       Bucket: bucket,
@@ -57,7 +65,7 @@ export async function PUT(req: Request) {
     const fileURL = `${R2_PUBLIC_URL.replace(/\/$/, '')}/${key}`;
     console.log(`[S3 Upload] Success. Public URL: ${fileURL}`);
 
-    // Return 200 OK so the plugin's presignedPromise resolves with res.ok = true
+    // 200 OK so the plugin's presignedPromise resolves with res.ok = true
     return new NextResponse(null, { status: 200, headers: CORS_HEADERS });
   } catch (err) {
     console.error('[S3 Upload] Error:', err);

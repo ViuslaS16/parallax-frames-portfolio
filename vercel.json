@@ -1,0 +1,10 @@
+{
+  "functions": {
+    "src/app/api/s3/upload/route.ts": {
+      "maxDuration": 60
+    },
+    "src/app/api/s3/route.ts": {
+      "maxDuration": 30
+    }
+  }
+}

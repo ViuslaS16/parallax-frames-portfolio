@@ -66,7 +66,9 @@ export async function POST(req: Request) {
       const url = await getSignedUrl(s3Client, createSignedUrl, { expiresIn: 3600 });
 
       // Build the public fileURL using the R2 public domain
-      const publicBase = process.env.NEXT_PUBLIC_R2_URL || process.env.PUBLIC_R2_URL;
+      // Diagnostic found this URL: https://pub-53dfba8fed9d48d3b927c25e22eb9cb1.r2.dev
+      const hardcodedR2 = 'https://pub-53dfba8fed9d48d3b927c25e22eb9cb1.r2.dev';
+      const publicBase = process.env.NEXT_PUBLIC_R2_URL || process.env.PUBLIC_R2_URL || hardcodedR2;
       
       let fileURL = '';
       if (publicBase) {
@@ -77,8 +79,7 @@ export async function POST(req: Request) {
 
       console.log('Final URL for Sanity:', fileURL);
 
-      // Return every possible key name that different versions of the plugin might expect
-      return NextResponse.json({ 
+      const responseData = { 
         url, 
         signedUrl: url,
         fileURL, 
@@ -86,9 +87,14 @@ export async function POST(req: Request) {
         publicUrl: fileURL,
         publicFileURL: fileURL,
         publicFileUrl: fileURL
-      }, {
+      };
+
+      return new Response(JSON.stringify(responseData), {
+        status: 200,
         headers: { 
+          'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
           'Access-Control-Allow-Headers': 'Content-Type, Authorization'
         }
       });

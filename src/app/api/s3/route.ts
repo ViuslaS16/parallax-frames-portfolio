@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { S3Client, PutObjectCommand, DeleteObjectCommand } from '@aws-sdk/client-s3';
-import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 
+// S3 client for Cloudflare R2
 const s3Client = new S3Client({
   region: 'auto',
   endpoint: process.env.S3_ENDPOINT!,
@@ -12,112 +12,122 @@ const s3Client = new S3Client({
   },
 });
 
-function getRandomKey() {
-  return Math.random().toFixed(10).replace('0.', '');
-}
+const CORS_HEADERS = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
+};
+
+const R2_PUBLIC_URL = 
+  process.env.NEXT_PUBLIC_R2_URL || 
+  process.env.PUBLIC_R2_URL || 
+  'https://pub-53dfba8fed9d48d3b927c25e22eb9cb1.r2.dev';
 
 export async function GET() {
   return NextResponse.json({
     status: 'ok',
+    mode: 'server-side-proxy',
     env: {
-      S3_ENDPOINT: process.env.S3_ENDPOINT ? `Defined (${process.env.S3_ENDPOINT.substring(0, 10)}...)` : 'MISSING',
+      S3_ENDPOINT: process.env.S3_ENDPOINT ? `Defined (${process.env.S3_ENDPOINT.substring(0, 20)}...)` : 'MISSING',
       S3_BUCKET: process.env.S3_BUCKET ? `Defined (${process.env.S3_BUCKET})` : 'MISSING',
-      PUBLIC_R2_URL: process.env.PUBLIC_R2_URL ? `Defined (${process.env.PUBLIC_R2_URL})` : 'MISSING',
-      NEXT_PUBLIC_R2_URL: process.env.NEXT_PUBLIC_R2_URL ? `Defined (${process.env.NEXT_PUBLIC_R2_URL})` : 'MISSING',
-      NEXT_PUBLIC_SANITY_PROJECT_ID: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ? 'Defined' : 'MISSING',
+      R2_PUBLIC_URL: R2_PUBLIC_URL,
     }
-  });
+  }, { headers: CORS_HEADERS });
 }
 
 export async function OPTIONS() {
-  return new NextResponse(null, {
-    status: 200,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-    },
-  });
+  return new NextResponse(null, { status: 204, headers: CORS_HEADERS });
 }
 
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
-    
-    // Logging for debugging in Vercel
-    console.log('S3 API Request Body:', JSON.stringify(body));
-    
-    const bucketKey = body.bucketKey || process.env.S3_BUCKET;
-    if (!bucketKey) {
-      return NextResponse.json({ message: 'Missing bucketKey' }, { status: 400 });
-    }
+    const contentType = req.headers.get('content-type') || '';
 
-    /** SIGNED URL CREATION */
-    if ('fileName' in body) {
-      const { contentType, fileName } = body;
-      const fileKey = fileName || `${getRandomKey()}-${getRandomKey()}-${(contentType || 'image/jpeg').split('/')[1]}`;
+    // ── CASE 1: Multipart form upload (browser sends file directly to our API) ──
+    if (contentType.includes('multipart/form-data')) {
+      const formData = await req.formData();
+      const file = formData.get('file') as File | null;
+      const fileName = (formData.get('fileName') as string) || file?.name || 'upload';
+      const fileType = (formData.get('contentType') as string) || file?.type || 'image/jpeg';
+      const bucketKey = (formData.get('bucketKey') as string) || process.env.S3_BUCKET!;
 
-      const createSignedUrl = new PutObjectCommand({
-        Bucket: bucketKey,
-        Key: fileKey,
-        ContentType: contentType || 'image/jpeg',
-      });
-
-      const url = await getSignedUrl(s3Client, createSignedUrl, { expiresIn: 3600 });
-
-      // Build the public fileURL using the R2 public domain
-      // Diagnostic found this URL: https://pub-53dfba8fed9d48d3b927c25e22eb9cb1.r2.dev
-      const hardcodedR2 = 'https://pub-53dfba8fed9d48d3b927c25e22eb9cb1.r2.dev';
-      const publicBase = process.env.NEXT_PUBLIC_R2_URL || process.env.PUBLIC_R2_URL || hardcodedR2;
-      
-      let fileURL = '';
-      if (publicBase) {
-        fileURL = `${publicBase.replace(/\/$/, '')}/${fileKey}`;
-      } else {
-        fileURL = url.split('?')[0];
+      if (!file) {
+        return NextResponse.json({ error: 'No file provided' }, { status: 400, headers: CORS_HEADERS });
       }
 
-      console.log('Final URL for Sanity:', fileURL);
+      const fileKey = fileName.replace(/\s+/g, '-');
+      const bytes = await file.arrayBuffer();
 
-      const responseData = { 
-        url, 
-        signedUrl: url,
-        fileURL, 
+      console.log(`[S3 Proxy] Uploading ${fileKey} (${bytes.byteLength} bytes) to R2`);
+
+      await s3Client.send(new PutObjectCommand({
+        Bucket: bucketKey,
+        Key: fileKey,
+        Body: Buffer.from(bytes),
+        ContentType: fileType,
+      }));
+
+      const fileURL = `${R2_PUBLIC_URL.replace(/\/$/, '')}/${fileKey}`;
+      console.log(`[S3 Proxy] Upload complete: ${fileURL}`);
+
+      return NextResponse.json({ 
+        url: fileURL,
+        fileURL,
         fileUrl: fileURL,
         publicUrl: fileURL,
         publicFileURL: fileURL,
-        publicFileUrl: fileURL
-      };
+      }, { headers: CORS_HEADERS });
+    }
 
-      return new Response(JSON.stringify(responseData), {
+    // ── CASE 2: JSON request from sanity-plugin-s3-files (asks for a signed URL) ──
+    const body = await req.json();
+    console.log('[S3 API] JSON body:', JSON.stringify(body));
+
+    const bucketKey = body.bucketKey || process.env.S3_BUCKET!;
+    if (!bucketKey) {
+      return NextResponse.json({ error: 'Missing bucketKey' }, { status: 400, headers: CORS_HEADERS });
+    }
+
+    // Deletion request
+    if ('fileKey' in body && !('fileName' in body)) {
+      await s3Client.send(new DeleteObjectCommand({ Bucket: bucketKey, Key: body.fileKey }));
+      return NextResponse.json({ message: 'deleted' }, { headers: CORS_HEADERS });
+    }
+
+    // Signed-URL request — but we intercept: the plugin will PUT to our /api/s3/upload endpoint
+    // We respond with a fake "presigned URL" that points back to our server-side upload proxy.
+    // This bypasses all R2 CORS issues completely.
+    if ('fileName' in body) {
+      const { contentType: fileType, fileName } = body;
+      const fileKey = fileName || `upload-${Date.now()}`;
+
+      // The "url" we return is our own API endpoint which accepts PUT and proxies to R2
+      const proxyUploadUrl = `${getOrigin(req)}/api/s3/upload?key=${encodeURIComponent(fileKey)}&bucket=${encodeURIComponent(bucketKey)}&type=${encodeURIComponent(fileType || 'image/jpeg')}`;
+      const fileURL = `${R2_PUBLIC_URL.replace(/\/$/, '')}/${fileKey}`;
+
+      console.log(`[S3 API] Returning proxy URL: ${proxyUploadUrl}`);
+      console.log(`[S3 API] Public fileURL: ${fileURL}`);
+
+      return new Response(JSON.stringify({
+        url: proxyUploadUrl,
+        fileURL,
+        fileUrl: fileURL,
+        publicUrl: fileURL,
+        publicFileURL: fileURL,
+      }), {
         status: 200,
-        headers: { 
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-          'Access-Control-Allow-Headers': 'Content-Type, Authorization'
-        }
+        headers: { 'Content-Type': 'application/json', ...CORS_HEADERS },
       });
     }
 
-    /** OBJECT DELETION */
-    if ('fileKey' in body) {
-      const { fileKey } = body;
-
-      const deleteObject = new DeleteObjectCommand({
-        Bucket: bucketKey,
-        Key: fileKey,
-      });
-
-      await s3Client.send(deleteObject);
-      return NextResponse.json({ message: 'success' }, {
-        headers: { 'Access-Control-Allow-Origin': '*' }
-      });
-    }
-
-    return NextResponse.json({ message: 'Invalid request' }, { status: 400 });
-  } catch (error) {
-    console.error('S3 Route Error:', error);
-    return NextResponse.json({ message: 'Server error' }, { status: 500 });
+    return NextResponse.json({ error: 'Invalid request' }, { status: 400, headers: CORS_HEADERS });
+  } catch (err) {
+    console.error('[S3 Route] Error:', err);
+    return NextResponse.json({ error: 'Server error', detail: String(err) }, { status: 500, headers: CORS_HEADERS });
   }
+}
+
+function getOrigin(req: Request): string {
+  const url = new URL(req.url);
+  return `${url.protocol}//${url.host}`;
 }

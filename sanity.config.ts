@@ -22,7 +22,6 @@ export default defineConfig({
         folder: '',
         secretForValidating: '',
       },
-      publicUrl: process.env.NEXT_PUBLIC_R2_URL || process.env.PUBLIC_R2_URL,
     })
   ],
   schema: {

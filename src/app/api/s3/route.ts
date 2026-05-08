@@ -1,8 +1,6 @@
 import { NextResponse } from 'next/server';
 import { S3Client, PutObjectCommand, DeleteObjectCommand } from '@aws-sdk/client-s3';
-import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 
-// S3 client for Cloudflare R2
 const s3Client = new S3Client({
   region: 'auto',
   endpoint: process.env.S3_ENDPOINT!,
@@ -13,89 +11,60 @@ const s3Client = new S3Client({
   },
 });
 
-const CORS_HEADERS = {
+const CORS = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
+  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
 };
 
-const R2_PUBLIC_URL =
+const R2_URL =
   process.env.NEXT_PUBLIC_R2_URL ||
   process.env.PUBLIC_R2_URL ||
   'https://pub-53dfba8fed9d48d3b927c25e22eb9cb1.r2.dev';
 
 export const runtime = 'nodejs';
-export const maxDuration = 30;
+export const maxDuration = 60;
 
 export async function GET() {
-  return NextResponse.json({
-    status: 'ok',
-    r2_url: R2_PUBLIC_URL,
-    env: {
-      S3_ENDPOINT: process.env.S3_ENDPOINT ? `Defined` : 'MISSING',
-      S3_BUCKET: process.env.S3_BUCKET ? `Defined (${process.env.S3_BUCKET})` : 'MISSING',
-      R2_URL: R2_PUBLIC_URL,
-    }
-  }, { headers: CORS_HEADERS });
+  return NextResponse.json({ status: 'ok', r2: R2_URL, bucket: process.env.S3_BUCKET }, { headers: CORS });
 }
 
 export async function OPTIONS() {
-  return new NextResponse(null, { status: 204, headers: CORS_HEADERS });
+  return new NextResponse(null, { status: 204, headers: CORS });
 }
 
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    console.log('[S3 API] Request:', JSON.stringify(body));
+    const bucket = body.bucketKey || process.env.S3_BUCKET!;
 
-    const bucketKey = body.bucketKey || process.env.S3_BUCKET!;
-    if (!bucketKey) {
-      return NextResponse.json({ error: 'Missing bucketKey' }, { status: 400, headers: CORS_HEADERS });
-    }
-
-    // ── DELETION ──
+    // Delete
     if ('fileKey' in body && !('fileName' in body)) {
-      await s3Client.send(new DeleteObjectCommand({ Bucket: bucketKey, Key: body.fileKey }));
-      return NextResponse.json({ message: 'deleted' }, { headers: CORS_HEADERS });
+      await s3Client.send(new DeleteObjectCommand({ Bucket: bucket, Key: body.fileKey }));
+      return NextResponse.json({ ok: true }, { headers: CORS });
     }
 
-    // ── PRESIGNED URL FOR UPLOAD ──
+    // Upload: plugin POSTs metadata, we upload the file ourselves via PUT to this same server
     if ('fileName' in body) {
-      const { contentType: fileType, fileName } = body;
-      const fileKey = fileName || `upload-${Date.now()}`;
-      const mimeType = fileType || 'image/jpeg';
+      const { fileName, contentType } = body;
+      const key = fileName || `upload-${Date.now()}`;
+      const mime = contentType || 'image/jpeg';
 
-      // Generate a real presigned PUT URL to R2
-      const signedUrl = await getSignedUrl(
-        s3Client,
-        new PutObjectCommand({
-          Bucket: bucketKey,
-          Key: fileKey,
-          ContentType: mimeType,
-        }),
-        { expiresIn: 3600 }
+      // Build proxy URL using URLSearchParams to avoid any encoding issues
+      const params = new URLSearchParams({ key, bucket, mime });
+      const origin = new URL(req.url).origin;
+      const proxyUrl = `${origin}/api/s3/upload?${params.toString()}`;
+      const fileURL = `${R2_URL.replace(/\/$/, '')}/${key}`;
+
+      return new Response(
+        JSON.stringify({ url: proxyUrl, fileURL, fileUrl: fileURL, publicUrl: fileURL, publicFileURL: fileURL }),
+        { status: 200, headers: { 'Content-Type': 'application/json', ...CORS } }
       );
-
-      const fileURL = `${R2_PUBLIC_URL.replace(/\/$/, '')}/${fileKey}`;
-
-      console.log(`[S3 API] Presigned URL generated for: ${fileKey}`);
-      console.log(`[S3 API] Public fileURL: ${fileURL}`);
-
-      return new Response(JSON.stringify({
-        url: signedUrl,
-        fileURL,
-        fileUrl: fileURL,
-        publicUrl: fileURL,
-        publicFileURL: fileURL,
-      }), {
-        status: 200,
-        headers: { 'Content-Type': 'application/json', ...CORS_HEADERS },
-      });
     }
 
-    return NextResponse.json({ error: 'Invalid request' }, { status: 400, headers: CORS_HEADERS });
-  } catch (err) {
-    console.error('[S3 Route] Error:', err);
-    return NextResponse.json({ error: 'Server error', detail: String(err) }, { status: 500, headers: CORS_HEADERS });
+    return NextResponse.json({ error: 'bad request' }, { status: 400, headers: CORS });
+  } catch (e) {
+    console.error('[s3]', e);
+    return NextResponse.json({ error: String(e) }, { status: 500, headers: CORS });
   }
 }

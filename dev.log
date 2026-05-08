@@ -1,0 +1,2001 @@
+
+> josa-portfolio@0.1.0 dev
+> next dev -p 3002
+
+▲ Next.js 16.2.5 (Turbopack)
+- Local:         http://localhost:3002
+- Network:       http://192.168.1.65:3002
+- Environments: .env.local
+✓ Ready in 139ms
+
+[browser] It is highly recommended to set `predictableActionArguments` to `true` when using `createMachine`. https://xstate.js.org/docs/guides/actions.html
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <div className="flex-grow ..." style={{opacity:0, ...}} ref={function useMotionRef.useCallback}>
+      <RenderFromTemplateContext>
+        <ScrollAndMaybeFocusHandler cacheNode={{rsc:{...}, ...}}>
+          <InnerScrollAndFocusHandlerOld focusAndScrollRef={{scrollRef:null, ...}} cacheNode={{rsc:{...}, ...}}>
+            <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+              <LoadingBoundary name="/" loading={null}>
+                <HTTPAccessFallbackBoundary notFound={{...}} forbidden={undefined} unauthorized={undefined}>
+                  <HTTPAccessFallbackErrorBoundary pathname="/studio/st..." notFound={{...}} forbidden={undefined} ...>
+                    <RedirectBoundary>
+                      <RedirectErrorBoundary router={{...}}>
+                        <InnerLayoutRouter url="/studio/st..." tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} ...>
+                          <SegmentViewNode type="layout" pagePath="(studio)/l...">
+                            <SegmentTrieNode>
+                            <RootLayout>
+                              <html
+                                lang="en"
+-                               className="inter_e64de053-module__-DwrZa__variable h-full antialiased"
+                              >
+                                <body
+-                                 className="min-h-full flex flex-col bg-background text-foreground"
+                                >
+                        ...
+            ...
+ 
+[browser] Uncaught Error: Switched to client rendering because the server rendering errored:
+
+window is not defined
+    at Array.map (<anonymous>)
+    at Array.map (<anonymous>)
+It is highly recommended to set `predictableActionArguments` to `true` when using `createMachine`. https://xstate.js.org/docs/guides/actions.html
+⨯ ReferenceError: window is not defined
+    at ignore-listed frames {
+  digest: '1112786135'
+}
+ GET / 200 in 1858ms (next.js: 103ms, application-code: 1755ms)
+ GET /studio/structure/featuredEvent 200 in 1601ms (next.js: 516ms, application-code: 1085ms)
+⨯ ReferenceError: window is not defined
+    at ignore-listed frames {
+  digest: '1112786135'
+}
+ HEAD /studio 200 in 740ms (next.js: 4ms, application-code: 736ms)
+⨯ ReferenceError: window is not defined
+    at ignore-listed frames {
+  digest: '1112786135'
+}
+ GET /studio 200 in 647ms (next.js: 1927µs, application-code: 645ms)
+⨯ ./src/app/(studio)/studio/[[...tool]]/page.tsx:3:16
+`ssr: false` is not allowed with `next/dynamic` in Server Components. Please move it into a Client Component.
+  [90m1 |[0m [36mimport[0m dynamic [36mfrom[0m [32m'next/dynamic'[0m
+  [90m2 |[0m
+[31m[1m>[0m [90m3 |[0m [36mconst[0m [33mStudio[0m = dynamic(() => [36mimport[0m([32m'./Studio'[0m).then((mod) => mod.[33mStudi.[0m..
+  [90m  |[0m                [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m4 |[0m   ssr: [36mfalse[0m,
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m5 |[0m })
+  [90m  |[0m [31m[1m^^[0m
+  [90m6 |[0m
+  [90m7 |[0m [36mexport[0m [36mconst[0m dynamicConfig = [32m'force-static'[0m
+  [90m8 |[0m
+
+Ecmascript file had an error
+
+
+ GET / 500 in 119ms (next.js: 65ms, application-code: 54ms)
+ GET /studio/structure/featuredEvent 500 in 106ms (next.js: 103ms, application-code: 3ms)
+ GET / 500 in 6ms (next.js: 2ms, application-code: 3ms)
+⨯ ./src/app/(studio)/studio/[[...tool]]/page.tsx:3:16
+`ssr: false` is not allowed with `next/dynamic` in Server Components. Please move it into a Client Component.
+  [90m1 |[0m [36mimport[0m dynamic [36mfrom[0m [32m'next/dynamic'[0m
+  [90m2 |[0m
+[31m[1m>[0m [90m3 |[0m [36mconst[0m [33mStudio[0m = dynamic(() => [36mimport[0m([32m'./Studio'[0m).then((mod) => mod.[33mStudi.[0m..
+  [90m  |[0m                [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m4 |[0m   ssr: [36mfalse[0m,
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m5 |[0m })
+  [90m  |[0m [31m[1m^^[0m
+  [90m6 |[0m
+  [90m7 |[0m [36mexport[0m [36mconst[0m dynamicConfig = [32m'force-static'[0m
+  [90m8 |[0m
+
+Ecmascript file had an error
+
+
+ GET /studio/structure/featuredEvent 500 in 6ms (next.js: 2ms, application-code: 3ms)
+ GET / 500 in 9ms (next.js: 5ms, application-code: 4ms)
+⨯ ./src/app/(studio)/studio/[[...tool]]/page.tsx:3:16
+`ssr: false` is not allowed with `next/dynamic` in Server Components. Please move it into a Client Component.
+  [90m1 |[0m [36mimport[0m dynamic [36mfrom[0m [32m'next/dynamic'[0m
+  [90m2 |[0m
+[31m[1m>[0m [90m3 |[0m [36mconst[0m [33mStudio[0m = dynamic(() => [36mimport[0m([32m'./Studio'[0m).then((mod) => mod.[33mStudi.[0m..
+  [90m  |[0m                [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m4 |[0m   ssr: [36mfalse[0m,
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m5 |[0m })
+  [90m  |[0m [31m[1m^^[0m
+  [90m6 |[0m
+  [90m7 |[0m [36mexport[0m [36mconst[0m dynamicConfig = [32m'force-static'[0m
+  [90m8 |[0m
+
+Ecmascript file had an error
+
+
+ GET /studio/structure/featuredEvent 500 in 24ms (next.js: 12ms, application-code: 12ms)
+ GET / 500 in 26ms (next.js: 18ms, application-code: 8ms)
+⨯ ./src/app/(studio)/studio/[[...tool]]/page.tsx:3:16
+`ssr: false` is not allowed with `next/dynamic` in Server Components. Please move it into a Client Component.
+  [90m1 |[0m [36mimport[0m dynamic [36mfrom[0m [32m'next/dynamic'[0m
+  [90m2 |[0m
+[31m[1m>[0m [90m3 |[0m [36mconst[0m [33mStudio[0m = dynamic(() => [36mimport[0m([32m'./Studio'[0m).then((mod) => mod.[33mStudi.[0m..
+  [90m  |[0m                [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m4 |[0m   ssr: [36mfalse[0m,
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m5 |[0m })
+  [90m  |[0m [31m[1m^^[0m
+  [90m6 |[0m
+  [90m7 |[0m [36mexport[0m [36mconst[0m dynamicConfig = [32m'force-static'[0m
+  [90m8 |[0m
+
+Ecmascript file had an error
+
+
+ GET / 500 in 19ms (next.js: 13ms, application-code: 5ms)
+⨯ ./src/app/(studio)/studio/[[...tool]]/page.tsx:3:16
+`ssr: false` is not allowed with `next/dynamic` in Server Components. Please move it into a Client Component.
+  [90m1 |[0m [36mimport[0m dynamic [36mfrom[0m [32m'next/dynamic'[0m
+  [90m2 |[0m
+[31m[1m>[0m [90m3 |[0m [36mconst[0m [33mStudio[0m = dynamic(() => [36mimport[0m([32m'./Studio'[0m).then((mod) => mod.[33mStudi.[0m..
+  [90m  |[0m                [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m4 |[0m   ssr: [36mfalse[0m,
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m5 |[0m })
+  [90m  |[0m [31m[1m^^[0m
+  [90m6 |[0m
+  [90m7 |[0m [36mexport[0m [36mconst[0m dynamicConfig = [32m'force-static'[0m
+  [90m8 |[0m
+
+Ecmascript file had an error
+
+
+ GET / 500 in 19ms (next.js: 9ms, application-code: 10ms)
+ GET /studio/structure/featuredEvent 500 in 19ms (next.js: 14ms, application-code: 5ms)
+ GET /studio/structure/featuredEvent 500 in 20ms (next.js: 16ms, application-code: 4ms)
+[browser] Uncaught Error: ./src/app/(studio)/studio/[[...tool]]/page.tsx:3:16
+`ssr: false` is not allowed with `next/dynamic` in Server Components. Please move it into a Client Component.
+  1 | import dynamic from 'next/dynamic'
+  2 |
+> 3 | const Studio = dynamic(() => import('./Studio').then((mod) => mod.Studi...
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 4 |   ssr: false,
+    | ^^^^^^^^^^^^^
+> 5 | })
+    | ^^
+  6 |
+  7 | export const dynamicConfig = 'force-static'
+  8 |
+
+Ecmascript file had an error
+
+
+    at <unknown> (Error: ./src/app/(studio)/studio/[[...tool]]/page.tsx:3:16)
+    at <unknown> (Error: (./src/app/(studio)/studio/[[...tool]]/page.tsx:3:16)
+[browser] Uncaught Error: ./src/app/(studio)/studio/[[...tool]]/page.tsx:3:16
+`ssr: false` is not allowed with `next/dynamic` in Server Components. Please move it into a Client Component.
+  1 | import dynamic from 'next/dynamic'
+  2 |
+> 3 | const Studio = dynamic(() => import('./Studio').then((mod) => mod.Studi...
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 4 |   ssr: false,
+    | ^^^^^^^^^^^^^
+> 5 | })
+    | ^^
+  6 |
+  7 | export const dynamicConfig = 'force-static'
+  8 |
+
+Ecmascript file had an error
+
+
+    at <unknown> (Error: ./src/app/(studio)/studio/[[...tool]]/page.tsx:3:16)
+    at <unknown> (Error: (./src/app/(studio)/studio/[[...tool]]/page.tsx:3:16)
+[browser] ./src/app/(studio)/studio/[[...tool]]/page.tsx:3:16
+`ssr: false` is not allowed with `next/dynamic` in Server Components. Please move it into a Client Component.
+  1 | import dynamic from 'next/dynamic'
+  2 |
+> 3 | const Studio = dynamic(() => import('./Studio').then((mod) => mod.Studi...
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 4 |   ssr: false,
+    | ^^^^^^^^^^^^^
+> 5 | })
+    | ^^
+  6 |
+  7 | export const dynamicConfig = 'force-static'
+  8 |
+
+Ecmascript file had an error 
+[browser] ./src/app/(studio)/studio/[[...tool]]/page.tsx:3:16
+`ssr: false` is not allowed with `next/dynamic` in Server Components. Please move it into a Client Component.
+  1 | import dynamic from 'next/dynamic'
+  2 |
+> 3 | const Studio = dynamic(() => import('./Studio').then((mod) => mod.Studi...
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 4 |   ssr: false,
+    | ^^^^^^^^^^^^^
+> 5 | })
+    | ^^
+  6 |
+  7 | export const dynamicConfig = 'force-static'
+  8 |
+
+Ecmascript file had an error 
+[browser] ./src/app/(studio)/studio/[[...tool]]/page.tsx:3:16
+`ssr: false` is not allowed with `next/dynamic` in Server Components. Please move it into a Client Component.
+  1 | import dynamic from 'next/dynamic'
+  2 |
+> 3 | const Studio = dynamic(() => import('./Studio').then((mod) => mod.Studi...
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 4 |   ssr: false,
+    | ^^^^^^^^^^^^^
+> 5 | })
+    | ^^
+  6 |
+  7 | export const dynamicConfig = 'force-static'
+  8 |
+
+Ecmascript file had an error 
+ GET / 500 in 8ms (next.js: 3ms, application-code: 5ms)
+⨯ ./src/app/(studio)/studio/[[...tool]]/page.tsx:3:16
+`ssr: false` is not allowed with `next/dynamic` in Server Components. Please move it into a Client Component.
+  [90m1 |[0m [36mimport[0m dynamic [36mfrom[0m [32m'next/dynamic'[0m
+  [90m2 |[0m
+[31m[1m>[0m [90m3 |[0m [36mconst[0m [33mStudio[0m = dynamic(() => [36mimport[0m([32m'./Studio'[0m).then((mod) => mod.[33mStudi.[0m..
+  [90m  |[0m                [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m4 |[0m   ssr: [36mfalse[0m,
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m5 |[0m })
+  [90m  |[0m [31m[1m^^[0m
+  [90m6 |[0m
+  [90m7 |[0m [36mexport[0m [36mconst[0m dynamic = [32m'force-static'[0m
+  [90m8 |[0m
+
+Ecmascript file had an error
+
+
+
+./src/app/(studio)/studio/[[...tool]]/page.tsx:7:14
+the name `dynamic` is defined multiple times
+  [90m 5 |[0m })
+  [90m 6 |[0m
+[31m[1m>[0m [90m 7 |[0m [36mexport[0m [36mconst[0m dynamic = [32m'force-static'[0m
+  [90m   |[0m              [31m[1m^^^^^^^[0m
+  [90m 8 |[0m
+  [90m 9 |[0m [36mexport[0m { metadata, viewport } [36mfrom[0m [32m'next-sanity/studio'[0m
+  [90m10 |[0m
+
+Ecmascript file had an error
+
+
+ GET / 500 in 65ms (next.js: 4ms, application-code: 61ms)
+[browser] ./src/app/(studio)/studio/[[...tool]]/page.tsx:3:16
+`ssr: false` is not allowed with `next/dynamic` in Server Components. Please move it into a Client Component.
+  1 | import dynamic from 'next/dynamic'
+  2 |
+> 3 | const Studio = dynamic(() => import('./Studio').then((mod) => mod.Studi...
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 4 |   ssr: false,
+    | ^^^^^^^^^^^^^
+> 5 | })
+    | ^^
+  6 |
+  7 | export const dynamic = 'force-static'
+  8 |
+
+Ecmascript file had an error 
+[browser] ./src/app/(studio)/studio/[[...tool]]/page.tsx:7:14
+the name `dynamic` is defined multiple times
+   5 | })
+   6 |
+>  7 | export const dynamic = 'force-static'
+     |              ^^^^^^^
+   8 |
+   9 | export { metadata, viewport } from 'next-sanity/studio'
+  10 |
+
+Ecmascript file had an error 
+ GET / 500 in 4ms (next.js: 1339µs, application-code: 3ms)
+⨯ ./src/app/(studio)/studio/[[...tool]]/page.tsx:3:16
+`ssr: false` is not allowed with `next/dynamic` in Server Components. Please move it into a Client Component.
+  [90m1 |[0m [36mimport[0m dynamic [36mfrom[0m [32m'next/dynamic'[0m
+  [90m2 |[0m
+[31m[1m>[0m [90m3 |[0m [36mconst[0m [33mStudio[0m = dynamic(() => [36mimport[0m([32m'./Studio'[0m).then((mod) => mod.[33mStudi.[0m..
+  [90m  |[0m                [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m4 |[0m   ssr: [36mfalse[0m,
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m5 |[0m })
+  [90m  |[0m [31m[1m^^[0m
+  [90m6 |[0m
+  [90m7 |[0m [36mexport[0m [36mconst[0m dynamic = [32m'force-static'[0m
+  [90m8 |[0m
+
+Ecmascript file had an error
+
+
+
+./src/app/(studio)/studio/[[...tool]]/page.tsx:7:14
+the name `dynamic` is defined multiple times
+  [90m 5 |[0m })
+  [90m 6 |[0m
+[31m[1m>[0m [90m 7 |[0m [36mexport[0m [36mconst[0m dynamic = [32m'force-static'[0m
+  [90m   |[0m              [31m[1m^^^^^^^[0m
+  [90m 8 |[0m
+  [90m 9 |[0m [36mexport[0m { metadata, viewport } [36mfrom[0m [32m'next-sanity/studio'[0m
+  [90m10 |[0m
+
+Ecmascript file had an error
+
+
+ GET /studio/structure/featuredEvent 500 in 9ms (next.js: 6ms, application-code: 4ms)
+[browser] Uncaught Error: ./src/app/(studio)/studio/[[...tool]]/page.tsx:3:16
+`ssr: false` is not allowed with `next/dynamic` in Server Components. Please move it into a Client Component.
+  1 | import dynamic from 'next/dynamic'
+  2 |
+> 3 | const Studio = dynamic(() => import('./Studio').then((mod) => mod.Studi...
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 4 |   ssr: false,
+    | ^^^^^^^^^^^^^
+> 5 | })
+    | ^^
+  6 |
+  7 | export const dynamic = 'force-static'
+  8 |
+
+Ecmascript file had an error
+
+
+    at <unknown> (Error: ./src/app/(studio)/studio/[[...tool]]/page.tsx:3:16)
+    at <unknown> (Error: (./src/app/(studio)/studio/[[...tool]]/page.tsx:3:16)
+[browser] ./src/app/(studio)/studio/[[...tool]]/page.tsx:3:16
+`ssr: false` is not allowed with `next/dynamic` in Server Components. Please move it into a Client Component.
+  1 | import dynamic from 'next/dynamic'
+  2 |
+> 3 | const Studio = dynamic(() => import('./Studio').then((mod) => mod.Studi...
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 4 |   ssr: false,
+    | ^^^^^^^^^^^^^
+> 5 | })
+    | ^^
+  6 |
+  7 | export const dynamic = 'force-static'
+  8 |
+
+Ecmascript file had an error 
+[browser] ./src/app/(studio)/studio/[[...tool]]/page.tsx:7:14
+the name `dynamic` is defined multiple times
+   5 | })
+   6 |
+>  7 | export const dynamic = 'force-static'
+     |              ^^^^^^^
+   8 |
+   9 | export { metadata, viewport } from 'next-sanity/studio'
+  10 |
+
+Ecmascript file had an error 
+[browser] Uncaught Error: ./src/app/(studio)/studio/[[...tool]]/page.tsx:3:16
+`ssr: false` is not allowed with `next/dynamic` in Server Components. Please move it into a Client Component.
+  1 | import dynamic from 'next/dynamic'
+  2 |
+> 3 | const Studio = dynamic(() => import('./Studio').then((mod) => mod.Studi...
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 4 |   ssr: false,
+    | ^^^^^^^^^^^^^
+> 5 | })
+    | ^^
+  6 |
+  7 | export const dynamic = 'force-static'
+  8 |
+
+Ecmascript file had an error
+
+
+    at <unknown> (Error: ./src/app/(studio)/studio/[[...tool]]/page.tsx:3:16)
+    at <unknown> (Error: (./src/app/(studio)/studio/[[...tool]]/page.tsx:3:16)
+[browser] ./src/app/(studio)/studio/[[...tool]]/page.tsx:3:16
+`ssr: false` is not allowed with `next/dynamic` in Server Components. Please move it into a Client Component.
+  1 | import dynamic from 'next/dynamic'
+  2 |
+> 3 | const Studio = dynamic(() => import('./Studio').then((mod) => mod.Studi...
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 4 |   ssr: false,
+    | ^^^^^^^^^^^^^
+> 5 | })
+    | ^^
+  6 |
+  7 | export const dynamic = 'force-static'
+  8 |
+
+Ecmascript file had an error 
+[browser] ./src/app/(studio)/studio/[[...tool]]/page.tsx:7:14
+the name `dynamic` is defined multiple times
+   5 | })
+   6 |
+>  7 | export const dynamic = 'force-static'
+     |              ^^^^^^^
+   8 |
+   9 | export { metadata, viewport } from 'next-sanity/studio'
+  10 |
+
+Ecmascript file had an error 
+ GET / 500 in 28ms (next.js: 2ms, application-code: 26ms)
+⨯ ./src/app/(studio)/studio/[[...tool]]/page.tsx:3:16
+`ssr: false` is not allowed with `next/dynamic` in Server Components. Please move it into a Client Component.
+  [90m1 |[0m [36mimport[0m nextDynamic [36mfrom[0m [32m'next/dynamic'[0m
+  [90m2 |[0m
+[31m[1m>[0m [90m3 |[0m [36mconst[0m [33mStudio[0m = nextDynamic(() => [36mimport[0m([32m'./Studio'[0m).then((mod) => mod.[33mS...[0m
+  [90m  |[0m                [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m4 |[0m   ssr: [36mfalse[0m,
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m5 |[0m })
+  [90m  |[0m [31m[1m^^[0m
+  [90m6 |[0m
+  [90m7 |[0m [36mexport[0m [36mconst[0m dynamic = [32m'force-static'[0m
+  [90m8 |[0m
+
+Ecmascript file had an error
+
+
+⨯ ./src/app/(studio)/studio/[[...tool]]/page.tsx:3:16
+`ssr: false` is not allowed with `next/dynamic` in Server Components. Please move it into a Client Component.
+  [90m1 |[0m [36mimport[0m nextDynamic [36mfrom[0m [32m'next/dynamic'[0m
+  [90m2 |[0m
+[31m[1m>[0m [90m3 |[0m [36mconst[0m [33mStudio[0m = nextDynamic(() => [36mimport[0m([32m'./Studio'[0m).then((mod) => mod.[33mS...[0m
+  [90m  |[0m                [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m4 |[0m   ssr: [36mfalse[0m,
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m5 |[0m })
+  [90m  |[0m [31m[1m^^[0m
+  [90m6 |[0m
+  [90m7 |[0m [36mexport[0m [36mconst[0m dynamic = [32m'force-static'[0m
+  [90m8 |[0m
+
+Ecmascript file had an error
+
+
+ GET / 500 in 7ms (next.js: 1618µs, application-code: 5ms)
+ GET /studio/structure/featuredEvent 500 in 13ms (next.js: 7ms, application-code: 6ms)
+[browser] Uncaught Error: ./src/app/(studio)/studio/[[...tool]]/page.tsx:3:16
+`ssr: false` is not allowed with `next/dynamic` in Server Components. Please move it into a Client Component.
+  1 | import nextDynamic from 'next/dynamic'
+  2 |
+> 3 | const Studio = nextDynamic(() => import('./Studio').then((mod) => mod.S...
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 4 |   ssr: false,
+    | ^^^^^^^^^^^^^
+> 5 | })
+    | ^^
+  6 |
+  7 | export const dynamic = 'force-static'
+  8 |
+
+Ecmascript file had an error
+
+
+    at <unknown> (Error: ./src/app/(studio)/studio/[[...tool]]/page.tsx:3:16)
+    at <unknown> (Error: (./src/app/(studio)/studio/[[...tool]]/page.tsx:3:16)
+[browser] Uncaught Error: ./src/app/(studio)/studio/[[...tool]]/page.tsx:3:16
+`ssr: false` is not allowed with `next/dynamic` in Server Components. Please move it into a Client Component.
+  1 | import nextDynamic from 'next/dynamic'
+  2 |
+> 3 | const Studio = nextDynamic(() => import('./Studio').then((mod) => mod.S...
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 4 |   ssr: false,
+    | ^^^^^^^^^^^^^
+> 5 | })
+    | ^^
+  6 |
+  7 | export const dynamic = 'force-static'
+  8 |
+
+Ecmascript file had an error
+
+
+    at <unknown> (Error: ./src/app/(studio)/studio/[[...tool]]/page.tsx:3:16)
+    at <unknown> (Error: (./src/app/(studio)/studio/[[...tool]]/page.tsx:3:16)
+[browser] ./src/app/(studio)/studio/[[...tool]]/page.tsx:3:16
+`ssr: false` is not allowed with `next/dynamic` in Server Components. Please move it into a Client Component.
+  1 | import nextDynamic from 'next/dynamic'
+  2 |
+> 3 | const Studio = nextDynamic(() => import('./Studio').then((mod) => mod.S...
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 4 |   ssr: false,
+    | ^^^^^^^^^^^^^
+> 5 | })
+    | ^^
+  6 |
+  7 | export const dynamic = 'force-static'
+  8 |
+
+Ecmascript file had an error 
+[browser] ./src/app/(studio)/studio/[[...tool]]/page.tsx:3:16
+`ssr: false` is not allowed with `next/dynamic` in Server Components. Please move it into a Client Component.
+  1 | import nextDynamic from 'next/dynamic'
+  2 |
+> 3 | const Studio = nextDynamic(() => import('./Studio').then((mod) => mod.S...
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 4 |   ssr: false,
+    | ^^^^^^^^^^^^^
+> 5 | })
+    | ^^
+  6 |
+  7 | export const dynamic = 'force-static'
+  8 |
+
+Ecmascript file had an error 
+ GET / 500 in 17ms (next.js: 7ms, application-code: 10ms)
+[browser] Uncaught Error: ./src/app/(studio)/studio/[[...tool]]/page.tsx:3:16
+`ssr: false` is not allowed with `next/dynamic` in Server Components. Please move it into a Client Component.
+  1 | import nextDynamic from 'next/dynamic'
+  2 |
+> 3 | const Studio = nextDynamic(() => import('./Studio').then((mod) => mod.S...
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 4 |   ssr: false,
+    | ^^^^^^^^^^^^^
+> 5 | })
+    | ^^
+  6 |
+  7 | export const dynamic = 'force-static'
+  8 |
+
+Ecmascript file had an error
+
+
+    at <unknown> (Error: ./src/app/(studio)/studio/[[...tool]]/page.tsx:3:16)
+    at <unknown> (Error: (./src/app/(studio)/studio/[[...tool]]/page.tsx:3:16)
+[browser] ./src/app/(studio)/studio/[[...tool]]/page.tsx:3:16
+`ssr: false` is not allowed with `next/dynamic` in Server Components. Please move it into a Client Component.
+  1 | import nextDynamic from 'next/dynamic'
+  2 |
+> 3 | const Studio = nextDynamic(() => import('./Studio').then((mod) => mod.S...
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 4 |   ssr: false,
+    | ^^^^^^^^^^^^^
+> 5 | })
+    | ^^
+  6 |
+  7 | export const dynamic = 'force-static'
+  8 |
+
+Ecmascript file had an error 
+[browser] ./src/app/(studio)/studio/[[...tool]]/page.tsx:3:16
+`ssr: false` is not allowed with `next/dynamic` in Server Components. Please move it into a Client Component.
+  1 | import nextDynamic from 'next/dynamic'
+  2 |
+> 3 | const Studio = nextDynamic(() => import('./Studio').then((mod) => mod.S...
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 4 |   ssr: false,
+    | ^^^^^^^^^^^^^
+> 5 | })
+    | ^^
+  6 |
+  7 | export const dynamic = 'force-static'
+  8 |
+
+Ecmascript file had an error 
+ GET / 500 in 12ms (next.js: 4ms, application-code: 8ms)
+[browser] Uncaught Error: ./src/app/(studio)/studio/[[...tool]]/page.tsx:3:16
+`ssr: false` is not allowed with `next/dynamic` in Server Components. Please move it into a Client Component.
+  1 | import nextDynamic from 'next/dynamic'
+  2 |
+> 3 | const Studio = nextDynamic(() => import('./Studio').then((mod) => mod.S...
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 4 |   ssr: false,
+    | ^^^^^^^^^^^^^
+> 5 | })
+    | ^^
+  6 |
+  7 | export const dynamic = 'force-static'
+  8 |
+
+Ecmascript file had an error
+
+
+    at <unknown> (Error: ./src/app/(studio)/studio/[[...tool]]/page.tsx:3:16)
+    at <unknown> (Error: (./src/app/(studio)/studio/[[...tool]]/page.tsx:3:16)
+[browser] ./src/app/(studio)/studio/[[...tool]]/page.tsx:3:16
+`ssr: false` is not allowed with `next/dynamic` in Server Components. Please move it into a Client Component.
+  1 | import nextDynamic from 'next/dynamic'
+  2 |
+> 3 | const Studio = nextDynamic(() => import('./Studio').then((mod) => mod.S...
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 4 |   ssr: false,
+    | ^^^^^^^^^^^^^
+> 5 | })
+    | ^^
+  6 |
+  7 | export const dynamic = 'force-static'
+  8 |
+
+Ecmascript file had an error 
+[browser] ./src/app/(studio)/studio/[[...tool]]/page.tsx:3:16
+`ssr: false` is not allowed with `next/dynamic` in Server Components. Please move it into a Client Component.
+  1 | import nextDynamic from 'next/dynamic'
+  2 |
+> 3 | const Studio = nextDynamic(() => import('./Studio').then((mod) => mod.S...
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 4 |   ssr: false,
+    | ^^^^^^^^^^^^^
+> 5 | })
+    | ^^
+  6 |
+  7 | export const dynamic = 'force-static'
+  8 |
+
+Ecmascript file had an error 
+✓ Compiled in 239ms
+ GET / 200 in 194ms (next.js: 72ms, application-code: 122ms)
+It is highly recommended to set `predictableActionArguments` to `true` when using `createMachine`. https://xstate.js.org/docs/guides/actions.html
+⨯ ReferenceError: window is not defined
+    at ignore-listed frames {
+  digest: '1112786135'
+}
+ GET /studio/structure/featuredEvent 200 in 1260ms (next.js: 13ms, application-code: 1247ms)
+ GET / 200 in 2.3s (next.js: 31ms, application-code: 2.2s)
+ GET / 200 in 18ms (next.js: 1160µs, application-code: 16ms)
+ GET /studio/structure/featuredEvent 200 in 123ms (next.js: 83ms, application-code: 40ms)
+ GET /studio/structure/featuredEvent 200 in 781ms (next.js: 573ms, application-code: 209ms)
+ GET / 200 in 190ms (next.js: 21ms, application-code: 169ms)
+ GET / 200 in 169ms (next.js: 1232µs, application-code: 168ms)
+ GET / 200 in 76ms (next.js: 7ms, application-code: 69ms)
+ GET /studio/structure/featuredEvent 200 in 187ms (next.js: 2ms, application-code: 185ms)
+ GET / 200 in 47ms (next.js: 4ms, application-code: 43ms)
+ GET / 200 in 47ms (next.js: 2ms, application-code: 44ms)
+ GET / 200 in 57ms (next.js: 2ms, application-code: 55ms)
+ GET / 200 in 53ms (next.js: 1492µs, application-code: 52ms)
+ GET / 200 in 41ms (next.js: 1353µs, application-code: 39ms)
+ GET / 200 in 39ms (next.js: 1466µs, application-code: 37ms)
+ GET / 200 in 43ms (next.js: 1589µs, application-code: 41ms)
+ GET / 200 in 45ms (next.js: 1671µs, application-code: 43ms)
+ GET / 200 in 45ms (next.js: 3ms, application-code: 43ms)
+ GET / 200 in 40ms (next.js: 3ms, application-code: 37ms)
+ GET / 200 in 42ms (next.js: 1249µs, application-code: 41ms)
+ GET / 200 in 45ms (next.js: 1327µs, application-code: 43ms)
+ GET / 200 in 45ms (next.js: 4ms, application-code: 41ms)
+ GET / 200 in 40ms (next.js: 2ms, application-code: 38ms)
+ GET / 200 in 38ms (next.js: 1463µs, application-code: 36ms)
+ GET / 200 in 36ms (next.js: 1518µs, application-code: 35ms)
+ GET / 200 in 26ms (next.js: 2ms, application-code: 23ms)
+ GET / 200 in 34ms (next.js: 1569µs, application-code: 33ms)
+ GET / 200 in 33ms (next.js: 1831µs, application-code: 31ms)
+ GET / 200 in 33ms (next.js: 1625µs, application-code: 31ms)
+ GET / 200 in 46ms (next.js: 2ms, application-code: 44ms)
+ GET / 200 in 46ms (next.js: 824µs, application-code: 45ms)
+ GET / 200 in 45ms (next.js: 1642µs, application-code: 43ms)
+ GET / 200 in 40ms (next.js: 1258µs, application-code: 39ms)
+ GET / 200 in 31ms (next.js: 926µs, application-code: 30ms)
+ GET / 200 in 38ms (next.js: 1197µs, application-code: 37ms)
+ GET / 200 in 37ms (next.js: 1571µs, application-code: 36ms)
+ GET / 200 in 39ms (next.js: 1309µs, application-code: 37ms)
+ GET / 200 in 39ms (next.js: 1015µs, application-code: 38ms)
+ GET / 200 in 39ms (next.js: 836µs, application-code: 38ms)
+ GET / 200 in 30ms (next.js: 923µs, application-code: 30ms)
+ GET / 200 in 28ms (next.js: 1362µs, application-code: 27ms)
+ GET / 200 in 36ms (next.js: 874µs, application-code: 35ms)
+ GET / 200 in 36ms (next.js: 1443µs, application-code: 34ms)
+ GET / 200 in 36ms (next.js: 1134µs, application-code: 35ms)
+ GET / 200 in 42ms (next.js: 1130µs, application-code: 41ms)
+ GET / 200 in 42ms (next.js: 789µs, application-code: 41ms)
+ GET / 200 in 43ms (next.js: 956µs, application-code: 42ms)
+ GET / 200 in 46ms (next.js: 1058µs, application-code: 45ms)
+ GET / 200 in 43ms (next.js: 1164µs, application-code: 42ms)
+ GET / 200 in 44ms (next.js: 918µs, application-code: 43ms)
+ GET / 200 in 36ms (next.js: 1140µs, application-code: 35ms)
+ GET / 200 in 33ms (next.js: 2ms, application-code: 31ms)
+ GET / 200 in 22ms (next.js: 1011µs, application-code: 21ms)
+ GET / 200 in 11ms (next.js: 1849µs, application-code: 10ms)
+✓ Compiled in 500ms
+ GET / 200 in 54ms (next.js: 6ms, application-code: 48ms)
+✓ Compiled in 471ms
+ GET /studio/structure/featuredEvent 200 in 14ms (next.js: 5ms, application-code: 9ms)
+ GET /studio/structure/featuredEvent 200 in 35ms (next.js: 2ms, application-code: 32ms)
+ POST /api/s3 200 in 355ms (next.js: 341ms, application-code: 13ms)
+ POST /api/s3 200 in 6ms (next.js: 1533µs, application-code: 5ms)
+[browser] ./sanity.config.ts:22:5
+Expected ',', got '}'
+  20 |         deleteObjectEndpoint: '/api/s3',
+  21 |       }
+> 22 |     })
+     |     ^
+  23 |   ],
+  24 |   schema: {
+  25 |     types: schemaTypes,
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Client Component Browser:
+    ./sanity.config.ts [Client Component Browser]
+    ./src/app/(studio)/studio/[[...tool]]/Studio.tsx [Client Component Browser]
+    ./src/app/(studio)/studio/[[...tool]]/StudioWrapper.tsx [Client Component Browser]
+    ./src/app/(studio)/studio/[[...tool]]/StudioWrapper.tsx [Server Component]
+    ./src/app/(studio)/studio/[[...tool]]/page.tsx [Server Component] 
+ GET /studio/structure/featuredEvent 200 in 49ms (next.js: 11ms, application-code: 39ms)
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <div className="flex-grow ..." style={{opacity:0, ...}} ref={function useMotionRef.useCallback}>
+      <RenderFromTemplateContext>
+        <ScrollAndMaybeFocusHandler cacheNode={{rsc:{...}, ...}}>
+          <InnerScrollAndFocusHandlerOld focusAndScrollRef={{scrollRef:null, ...}} cacheNode={{rsc:{...}, ...}}>
+            <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+              <LoadingBoundary name="/" loading={null}>
+                <HTTPAccessFallbackBoundary notFound={{...}} forbidden={undefined} unauthorized={undefined}>
+                  <HTTPAccessFallbackErrorBoundary pathname="/studio/st..." notFound={{...}} forbidden={undefined} ...>
+                    <RedirectBoundary>
+                      <RedirectErrorBoundary router={{...}}>
+                        <InnerLayoutRouter url="/studio/st..." tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} ...>
+                          <SegmentViewNode type="layout" pagePath="(studio)/l...">
+                            <SegmentTrieNode>
+                            <RootLayout>
+                              <html
+                                lang="en"
+-                               className="inter_e64de053-module__-DwrZa__variable h-full antialiased"
+                              >
+                                <body
+-                                 className="min-h-full flex flex-col bg-background text-foreground"
+                                >
+                        ...
+            ...
+ 
+[browser] It is highly recommended to set `predictableActionArguments` to `true` when using `createMachine`. https://xstate.js.org/docs/guides/actions.html
+ GET /studio/structure/featuredEvent 200 in 30ms (next.js: 9ms, application-code: 21ms)
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <div className="flex-grow ..." style={{opacity:0, ...}} ref={function useMotionRef.useCallback}>
+      <RenderFromTemplateContext>
+        <ScrollAndMaybeFocusHandler cacheNode={{rsc:{...}, ...}}>
+          <InnerScrollAndFocusHandlerOld focusAndScrollRef={{scrollRef:null, ...}} cacheNode={{rsc:{...}, ...}}>
+            <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+              <LoadingBoundary name="/" loading={null}>
+                <HTTPAccessFallbackBoundary notFound={{...}} forbidden={undefined} unauthorized={undefined}>
+                  <HTTPAccessFallbackErrorBoundary pathname="/studio/st..." notFound={{...}} forbidden={undefined} ...>
+                    <RedirectBoundary>
+                      <RedirectErrorBoundary router={{...}}>
+                        <InnerLayoutRouter url="/studio/st..." tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} ...>
+                          <SegmentViewNode type="layout" pagePath="(studio)/l...">
+                            <SegmentTrieNode>
+                            <RootLayout>
+                              <html
+                                lang="en"
+-                               className="inter_e64de053-module__-DwrZa__variable h-full antialiased"
+                              >
+                                <body
+-                                 className="min-h-full flex flex-col bg-background text-foreground"
+                                >
+                        ...
+            ...
+ 
+[browser] It is highly recommended to set `predictableActionArguments` to `true` when using `createMachine`. https://xstate.js.org/docs/guides/actions.html
+[browser] Each child in a list should have a unique "key" prop.
+
+Check the render method of `div`. It was passed a child from ConfigureCredentials. See https://react.dev/link/warning-keys for more information. 
+[browser] In HTML, <form> cannot be a descendant of <form>.
+This will cause a hydration error.
+
+  ...
+    <div data-testid="document-p..." className="Scroller-s..." ref={{...}}>
+      <FormContainer hidden={false}>
+        <div hidden={false} className="FormContai...">
+          <PresenceOverlay margins={[...]}>
+            <PresenceTrackerComponent>
+              <StickyOverlay margins={[...]}>
+                <RootWrapper ref={function bound dispatchSetState}>
+                  <div className="RootWrappe..." ref={function bound dispatchSetState}>
+                    <TopRegionWrapper>
+                    <div>
+                      <ForwardRef(Box) as="form" onSubmit={function preventDefault} ref={function t11} ...>
+                        <StyledBox data-as="form" data-ui="Box" onSubmit={function preventDefault} ...>
+>                         <form
+>                           data-as="form"
+>                           data-ui="Box"
+>                           onSubmit={function preventDefault}
+>                           data-testid="form-view"
+>                           className="StyledBox-sc-1hhky9f-0 eFPsti"
+>                           ref={function t11}
+>                         >
+                            <FormRow>
+                            ...
+                              <ForwardRef(Box) data-ui="Stack" className="StyledStac...">
+                                <StyledBox data-as="div" data-ui="Stack" className="StyledStac..." $column={[...]} ...>
+                                  <div data-as="div" data-ui="Stack" className="StyledBox-...">
+                                    <ForwardRef(Label)>
+                                    <ForwardRef(Heading)>
+                                    <ForwardRef(Text)>
+>                                   <form style={{marginTop:"1.5rem"}} onSubmit={function submitCredentials}>
+                    ...
+ 
+[browser] <form> cannot contain a nested <form>.
+See this log for the ancestor stack trace. 
+ GET /studio/structure/featuredEvent;e8aafe36-e011-45ab-94ab-51e32c05fd31%2Ctemplate%3DfeaturedEvent? 200 in 47ms (next.js: 11ms, application-code: 36ms)
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <div className="flex-grow ..." style={{opacity:0, ...}} ref={function useMotionRef.useCallback}>
+      <RenderFromTemplateContext>
+        <ScrollAndMaybeFocusHandler cacheNode={{rsc:{...}, ...}}>
+          <InnerScrollAndFocusHandlerOld focusAndScrollRef={{scrollRef:null, ...}} cacheNode={{rsc:{...}, ...}}>
+            <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+              <LoadingBoundary name="/" loading={null}>
+                <HTTPAccessFallbackBoundary notFound={{...}} forbidden={undefined} unauthorized={undefined}>
+                  <HTTPAccessFallbackErrorBoundary pathname="/studio/st..." notFound={{...}} forbidden={undefined} ...>
+                    <RedirectBoundary>
+                      <RedirectErrorBoundary router={{...}}>
+                        <InnerLayoutRouter url="/studio/st..." tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} ...>
+                          <SegmentViewNode type="layout" pagePath="(studio)/l...">
+                            <SegmentTrieNode>
+                            <RootLayout>
+                              <html
+                                lang="en"
+-                               className="inter_e64de053-module__-DwrZa__variable h-full antialiased"
+                              >
+                                <body
+-                                 className="min-h-full flex flex-col bg-background text-foreground"
+                                >
+                        ...
+            ...
+ 
+[browser] It is highly recommended to set `predictableActionArguments` to `true` when using `createMachine`. https://xstate.js.org/docs/guides/actions.html
+[browser] Each child in a list should have a unique "key" prop.
+
+Check the render method of `div`. It was passed a child from ConfigureCredentials. See https://react.dev/link/warning-keys for more information. 
+[browser] In HTML, <form> cannot be a descendant of <form>.
+This will cause a hydration error.
+
+  ...
+    <div data-testid="document-p..." className="Scroller-s..." ref={{...}}>
+      <FormContainer hidden={false}>
+        <div hidden={false} className="FormContai...">
+          <PresenceOverlay margins={[...]}>
+            <PresenceTrackerComponent>
+              <StickyOverlay margins={[...]}>
+                <RootWrapper ref={function bound dispatchSetState}>
+                  <div className="RootWrappe..." ref={function bound dispatchSetState}>
+                    <TopRegionWrapper>
+                    <div>
+                      <ForwardRef(Box) as="form" onSubmit={function preventDefault} ref={function t11} ...>
+                        <StyledBox data-as="form" data-ui="Box" onSubmit={function preventDefault} ...>
+>                         <form
+>                           data-as="form"
+>                           data-ui="Box"
+>                           onSubmit={function preventDefault}
+>                           data-testid="form-view"
+>                           className="StyledBox-sc-1hhky9f-0 eFPsti"
+>                           ref={function t11}
+>                         >
+                            <FormRow>
+                            ...
+                              <ForwardRef(Box) data-ui="Stack" className="StyledStac...">
+                                <StyledBox data-as="div" data-ui="Stack" className="StyledStac..." $column={[...]} ...>
+                                  <div data-as="div" data-ui="Stack" className="StyledBox-...">
+                                    <ForwardRef(Label)>
+                                    <ForwardRef(Heading)>
+                                    <ForwardRef(Text)>
+>                                   <form style={{marginTop:"1.5rem"}} onSubmit={function submitCredentials}>
+                    ...
+ 
+[browser] <form> cannot contain a nested <form>.
+See this log for the ancestor stack trace. 
+ GET /studio/structure/featuredEvent;e8aafe36-e011-45ab-94ab-51e32c05fd31%2Ctemplate%3DfeaturedEvent? 200 in 46ms (next.js: 11ms, application-code: 35ms)
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <div className="flex-grow ..." style={{opacity:0, ...}} ref={function useMotionRef.useCallback}>
+      <RenderFromTemplateContext>
+        <ScrollAndMaybeFocusHandler cacheNode={{rsc:{...}, ...}}>
+          <InnerScrollAndFocusHandlerOld focusAndScrollRef={{scrollRef:null, ...}} cacheNode={{rsc:{...}, ...}}>
+            <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+              <LoadingBoundary name="/" loading={null}>
+                <HTTPAccessFallbackBoundary notFound={{...}} forbidden={undefined} unauthorized={undefined}>
+                  <HTTPAccessFallbackErrorBoundary pathname="/studio/st..." notFound={{...}} forbidden={undefined} ...>
+                    <RedirectBoundary>
+                      <RedirectErrorBoundary router={{...}}>
+                        <InnerLayoutRouter url="/studio/st..." tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} ...>
+                          <SegmentViewNode type="layout" pagePath="(studio)/l...">
+                            <SegmentTrieNode>
+                            <RootLayout>
+                              <html
+                                lang="en"
+-                               className="inter_e64de053-module__-DwrZa__variable h-full antialiased"
+                              >
+                                <body
+-                                 className="min-h-full flex flex-col bg-background text-foreground"
+                                >
+                        ...
+            ...
+ 
+[browser] It is highly recommended to set `predictableActionArguments` to `true` when using `createMachine`. https://xstate.js.org/docs/guides/actions.html
+[browser] Each child in a list should have a unique "key" prop.
+
+Check the render method of `div`. It was passed a child from ConfigureCredentials. See https://react.dev/link/warning-keys for more information. 
+[browser] In HTML, <form> cannot be a descendant of <form>.
+This will cause a hydration error.
+
+  ...
+    <div data-testid="document-p..." className="Scroller-s..." ref={{...}}>
+      <FormContainer hidden={false}>
+        <div hidden={false} className="FormContai...">
+          <PresenceOverlay margins={[...]}>
+            <PresenceTrackerComponent>
+              <StickyOverlay margins={[...]}>
+                <RootWrapper ref={function bound dispatchSetState}>
+                  <div className="RootWrappe..." ref={function bound dispatchSetState}>
+                    <TopRegionWrapper>
+                    <div>
+                      <ForwardRef(Box) as="form" onSubmit={function preventDefault} ref={function t11} ...>
+                        <StyledBox data-as="form" data-ui="Box" onSubmit={function preventDefault} ...>
+>                         <form
+>                           data-as="form"
+>                           data-ui="Box"
+>                           onSubmit={function preventDefault}
+>                           data-testid="form-view"
+>                           className="StyledBox-sc-1hhky9f-0 eFPsti"
+>                           ref={function t11}
+>                         >
+                            <FormRow>
+                            ...
+                              <ForwardRef(Box) data-ui="Stack" className="StyledStac...">
+                                <StyledBox data-as="div" data-ui="Stack" className="StyledStac..." $column={[...]} ...>
+                                  <div data-as="div" data-ui="Stack" className="StyledBox-...">
+                                    <ForwardRef(Label)>
+                                    <ForwardRef(Heading)>
+                                    <ForwardRef(Text)>
+>                                   <form style={{marginTop:"1.5rem"}} onSubmit={function submitCredentials}>
+                    ...
+ 
+[browser] <form> cannot contain a nested <form>.
+See this log for the ancestor stack trace. 
+✓ Compiled in 32ms
+[browser] Building schema for synchronization took more than 1 second (1535.1000000089407ms)
+[browser] Skipped "0" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "0" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "1" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "1" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "2" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "2" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "3" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "3" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "4" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "4" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "5" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "5" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "6" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "6" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "0" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "0" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "1" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "1" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "2" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "2" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "3" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "3" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "4" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "4" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "5" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "5" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "6" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "6" because an invalid file extension was provided. (<anonymous>)
+ POST /api/s3 200 in 18ms (next.js: 4ms, application-code: 13ms)
+ POST /api/s3 200 in 10ms (next.js: 3ms, application-code: 7ms)
+ POST /api/s3 200 in 11ms (next.js: 3ms, application-code: 9ms)
+ POST /api/s3 200 in 10ms (next.js: 2ms, application-code: 8ms)
+ POST /api/s3 200 in 6ms (next.js: 1303µs, application-code: 5ms)
+ POST /api/s3 200 in 10ms (next.js: 2ms, application-code: 7ms)
+ POST /api/s3 200 in 12ms (next.js: 3ms, application-code: 9ms)
+ POST /api/s3 200 in 8ms (next.js: 2ms, application-code: 5ms)
+ POST /api/s3 200 in 6ms (next.js: 1536µs, application-code: 5ms)
+ GET /studio/structure/featuredEvent;e8aafe36-e011-45ab-94ab-51e32c05fd31%2Ctemplate%3DfeaturedEvent 200 in 55ms (next.js: 13ms, application-code: 43ms)
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <div className="flex-grow ..." style={{opacity:0, ...}} ref={function useMotionRef.useCallback}>
+      <RenderFromTemplateContext>
+        <ScrollAndMaybeFocusHandler cacheNode={{rsc:{...}, ...}}>
+          <InnerScrollAndFocusHandlerOld focusAndScrollRef={{scrollRef:null, ...}} cacheNode={{rsc:{...}, ...}}>
+            <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+              <LoadingBoundary name="/" loading={null}>
+                <HTTPAccessFallbackBoundary notFound={{...}} forbidden={undefined} unauthorized={undefined}>
+                  <HTTPAccessFallbackErrorBoundary pathname="/studio/st..." notFound={{...}} forbidden={undefined} ...>
+                    <RedirectBoundary>
+                      <RedirectErrorBoundary router={{...}}>
+                        <InnerLayoutRouter url="/studio/st..." tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} ...>
+                          <SegmentViewNode type="layout" pagePath="(studio)/l...">
+                            <SegmentTrieNode>
+                            <RootLayout>
+                              <html
+                                lang="en"
+-                               className="inter_e64de053-module__-DwrZa__variable h-full antialiased"
+                              >
+                                <body
+-                                 className="min-h-full flex flex-col bg-background text-foreground"
+                                >
+                        ...
+            ...
+ 
+[browser] It is highly recommended to set `predictableActionArguments` to `true` when using `createMachine`. https://xstate.js.org/docs/guides/actions.html
+[browser] Skipped "0" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "0" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "1" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "1" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "2" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "2" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "3" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "3" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "4" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "4" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "5" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "5" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "6" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "6" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "0" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "0" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "1" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "1" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "2" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "2" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "3" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "3" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "4" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "4" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "5" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "5" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "6" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "6" because an invalid file extension was provided. (<anonymous>)
+ POST /api/s3 200 in 9ms (next.js: 3ms, application-code: 6ms)
+ POST /api/s3 200 in 13ms (next.js: 4ms, application-code: 9ms)
+ POST /api/s3 200 in 8ms (next.js: 3ms, application-code: 6ms)
+ POST /api/s3 200 in 16ms (next.js: 4ms, application-code: 11ms)
+ GET /studio/structure/featuredEvent;e8aafe36-e011-45ab-94ab-51e32c05fd31%2Ctemplate%3DfeaturedEvent 200 in 53ms (next.js: 14ms, application-code: 39ms)
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <div className="flex-grow ..." style={{opacity:0, ...}} ref={function useMotionRef.useCallback}>
+      <RenderFromTemplateContext>
+        <ScrollAndMaybeFocusHandler cacheNode={{rsc:{...}, ...}}>
+          <InnerScrollAndFocusHandlerOld focusAndScrollRef={{scrollRef:null, ...}} cacheNode={{rsc:{...}, ...}}>
+            <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+              <LoadingBoundary name="/" loading={null}>
+                <HTTPAccessFallbackBoundary notFound={{...}} forbidden={undefined} unauthorized={undefined}>
+                  <HTTPAccessFallbackErrorBoundary pathname="/studio/st..." notFound={{...}} forbidden={undefined} ...>
+                    <RedirectBoundary>
+                      <RedirectErrorBoundary router={{...}}>
+                        <InnerLayoutRouter url="/studio/st..." tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} ...>
+                          <SegmentViewNode type="layout" pagePath="(studio)/l...">
+                            <SegmentTrieNode>
+                            <RootLayout>
+                              <html
+                                lang="en"
+-                               className="inter_e64de053-module__-DwrZa__variable h-full antialiased"
+                              >
+                                <body
+-                                 className="min-h-full flex flex-col bg-background text-foreground"
+                                >
+                        ...
+            ...
+ 
+[browser] It is highly recommended to set `predictableActionArguments` to `true` when using `createMachine`. https://xstate.js.org/docs/guides/actions.html
+[browser] Skipped "0" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "0" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "1" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "1" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "2" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "2" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "3" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "3" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "4" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "4" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "5" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "5" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "6" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "6" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "0" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "0" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "1" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "1" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "2" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "2" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "3" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "3" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "4" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "4" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "5" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "5" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "6" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "6" because an invalid file extension was provided. (<anonymous>)
+ POST /api/s3 200 in 13ms (next.js: 4ms, application-code: 9ms)
+✓ Compiled in 34ms
+[browser] Skipped "0" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "0" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "1" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "1" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "2" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "2" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "3" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "3" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "4" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "4" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "5" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "5" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "6" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "6" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "0" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "0" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "1" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "1" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "2" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "2" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "3" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "3" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "4" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "4" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "5" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "5" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "6" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "6" because an invalid file extension was provided. (<anonymous>)
+ GET /studio/structure/featuredEvent;e8aafe36-e011-45ab-94ab-51e32c05fd31%2Ctemplate%3DfeaturedEvent 200 in 54ms (next.js: 14ms, application-code: 40ms)
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <div className="flex-grow ..." style={{opacity:0, ...}} ref={function useMotionRef.useCallback}>
+      <RenderFromTemplateContext>
+        <ScrollAndMaybeFocusHandler cacheNode={{rsc:{...}, ...}}>
+          <InnerScrollAndFocusHandlerOld focusAndScrollRef={{scrollRef:null, ...}} cacheNode={{rsc:{...}, ...}}>
+            <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+              <LoadingBoundary name="/" loading={null}>
+                <HTTPAccessFallbackBoundary notFound={{...}} forbidden={undefined} unauthorized={undefined}>
+                  <HTTPAccessFallbackErrorBoundary pathname="/studio/st..." notFound={{...}} forbidden={undefined} ...>
+                    <RedirectBoundary>
+                      <RedirectErrorBoundary router={{...}}>
+                        <InnerLayoutRouter url="/studio/st..." tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} ...>
+                          <SegmentViewNode type="layout" pagePath="(studio)/l...">
+                            <SegmentTrieNode>
+                            <RootLayout>
+                              <html
+                                lang="en"
+-                               className="inter_e64de053-module__-DwrZa__variable h-full antialiased"
+                              >
+                                <body
+-                                 className="min-h-full flex flex-col bg-background text-foreground"
+                                >
+                        ...
+            ...
+ 
+[browser] It is highly recommended to set `predictableActionArguments` to `true` when using `createMachine`. https://xstate.js.org/docs/guides/actions.html
+[browser] Skipped "0" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "0" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "1" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "1" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "2" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "2" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "3" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "3" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "4" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "4" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "5" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "5" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "6" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "6" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "0" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "0" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "1" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "1" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "2" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "2" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "3" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "3" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "4" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "4" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "5" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "5" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "6" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "6" because an invalid file extension was provided. (<anonymous>)
+ POST /api/s3 200 in 8ms (next.js: 3ms, application-code: 5ms)
+ POST /api/s3 200 in 10ms (next.js: 3ms, application-code: 7ms)
+ POST /api/s3 200 in 10ms (next.js: 3ms, application-code: 7ms)
+ POST /api/s3 200 in 10ms (next.js: 3ms, application-code: 6ms)
+ POST /api/s3 200 in 8ms (next.js: 1743µs, application-code: 7ms)
+ GET /studio/structure/featuredEvent;e8aafe36-e011-45ab-94ab-51e32c05fd31%2Ctemplate%3DfeaturedEvent 200 in 73ms (next.js: 18ms, application-code: 55ms)
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <div className="flex-grow ..." style={{opacity:0, ...}} ref={function useMotionRef.useCallback}>
+      <RenderFromTemplateContext>
+        <ScrollAndMaybeFocusHandler cacheNode={{rsc:{...}, ...}}>
+          <InnerScrollAndFocusHandlerOld focusAndScrollRef={{scrollRef:null, ...}} cacheNode={{rsc:{...}, ...}}>
+            <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+              <LoadingBoundary name="/" loading={null}>
+                <HTTPAccessFallbackBoundary notFound={{...}} forbidden={undefined} unauthorized={undefined}>
+                  <HTTPAccessFallbackErrorBoundary pathname="/studio/st..." notFound={{...}} forbidden={undefined} ...>
+                    <RedirectBoundary>
+                      <RedirectErrorBoundary router={{...}}>
+                        <InnerLayoutRouter url="/studio/st..." tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} ...>
+                          <SegmentViewNode type="layout" pagePath="(studio)/l...">
+                            <SegmentTrieNode>
+                            <RootLayout>
+                              <html
+                                lang="en"
+-                               className="inter_e64de053-module__-DwrZa__variable h-full antialiased"
+                              >
+                                <body
+-                                 className="min-h-full flex flex-col bg-background text-foreground"
+                                >
+                        ...
+            ...
+ 
+[browser] It is highly recommended to set `predictableActionArguments` to `true` when using `createMachine`. https://xstate.js.org/docs/guides/actions.html
+[browser] Skipped "0" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "0" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "1" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "1" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "2" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "2" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "3" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "3" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "4" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "4" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "5" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "5" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "6" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "6" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "0" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "0" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "1" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "1" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "2" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "2" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "3" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "3" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "4" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "4" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "5" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "5" because an invalid file extension was provided. (<anonymous>)
+[browser] Skipped "6" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types. (<anonymous>)
+[browser] Skipped "6" because an invalid file extension was provided. (<anonymous>)
+ POST /api/s3 200 in 9ms (next.js: 3ms, application-code: 6ms)
+[browser] The default export of @sanity/image-url has been deprecated. Use the named export `createImageUrlBuilder` instead.
+✓ Compiled in 54ms
+✓ Compiled in 31ms
+[browser] Building schema for synchronization took more than 1 second (25394.20000000298ms)
+[browser] Building schema for synchronization took more than 1 second (46359.30000001192ms)
+ GET /studio/structure/featuredEvent;e8aafe36-e011-45ab-94ab-51e32c05fd31%2Ctemplate%3DfeaturedEvent 200 in 60ms (next.js: 18ms, application-code: 42ms)
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <div className="flex-grow ..." style={{opacity:0, ...}} ref={function useMotionRef.useCallback}>
+      <RenderFromTemplateContext>
+        <ScrollAndMaybeFocusHandler cacheNode={{rsc:{...}, ...}}>
+          <InnerScrollAndFocusHandlerOld focusAndScrollRef={{scrollRef:null, ...}} cacheNode={{rsc:{...}, ...}}>
+            <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+              <LoadingBoundary name="/" loading={null}>
+                <HTTPAccessFallbackBoundary notFound={{...}} forbidden={undefined} unauthorized={undefined}>
+                  <HTTPAccessFallbackErrorBoundary pathname="/studio/st..." notFound={{...}} forbidden={undefined} ...>
+                    <RedirectBoundary>
+                      <RedirectErrorBoundary router={{...}}>
+                        <InnerLayoutRouter url="/studio/st..." tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} ...>
+                          <SegmentViewNode type="layout" pagePath="(studio)/l...">
+                            <SegmentTrieNode>
+                            <RootLayout>
+                              <html
+                                lang="en"
+-                               className="inter_e64de053-module__-DwrZa__variable h-full antialiased"
+                              >
+                                <body
+-                                 className="min-h-full flex flex-col bg-background text-foreground"
+                                >
+                        ...
+            ...
+ 
+[browser] It is highly recommended to set `predictableActionArguments` to `true` when using `createMachine`. https://xstate.js.org/docs/guides/actions.html
+[browser] The default export of @sanity/image-url has been deprecated. Use the named export `createImageUrlBuilder` instead.
+ POST /api/s3 200 in 12ms (next.js: 4ms, application-code: 9ms)
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <div className="flex-grow ..." style={{opacity:0, ...}} ref={function useMotionRef.useCallback}>
+      <RenderFromTemplateContext>
+        <ScrollAndMaybeFocusHandler cacheNode={{rsc:{...}, ...}}>
+          <InnerScrollAndFocusHandlerOld focusAndScrollRef={{scrollRef:null, ...}} cacheNode={{rsc:{...}, ...}}>
+            <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+              <LoadingBoundary name="/" loading={null}>
+                <HTTPAccessFallbackBoundary notFound={{...}} forbidden={undefined} unauthorized={undefined}>
+                  <HTTPAccessFallbackErrorBoundary pathname="/studio/st..." notFound={{...}} forbidden={undefined} ...>
+                    <RedirectBoundary>
+                      <RedirectErrorBoundary router={{...}}>
+                        <InnerLayoutRouter url="/studio/st..." tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} ...>
+                          <SegmentViewNode type="layout" pagePath="(studio)/l...">
+                            <SegmentTrieNode>
+                            <RootLayout>
+                              <html
+                                lang="en"
+-                               className="inter_e64de053-module__-DwrZa__variable h-full antialiased"
+                              >
+                                <body
+-                                 className="min-h-full flex flex-col bg-background text-foreground"
+                                >
+                        ...
+            ...
+ 
+[browser] It is highly recommended to set `predictableActionArguments` to `true` when using `createMachine`. https://xstate.js.org/docs/guides/actions.html
+[browser] Building schema for synchronization took more than 1 second (8540.90000000596ms)
+[browser] Building schema for synchronization took more than 1 second (108457.29999999702ms)
+[browser] Building schema for synchronization took more than 1 second (25389.20000000298ms)
+[browser] Building schema for synchronization took more than 1 second (91823.40000000596ms)
+An empty string ("") was passed to the src attribute. This may cause the browser to download the whole page again over the network. To fix this, either do not render the element at all or pass null to src instead of an empty string.
+ GET / 200 in 694ms (next.js: 6ms, application-code: 688ms)
+[browser] An empty string ("") was passed to the src attribute. This may cause the browser to download the whole page again over the network. To fix this, either do not render the element at all or pass null to src instead of an empty string. 
+[browser] Image is missing required "src" property: [object HTMLImageElement] 
+[browser] Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly. (<anonymous>)
+Error: Route "/event/[slug]" used `params.slug`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at EventGallery (src/app/event/[slug]/page.tsx:13:21)
+  11 |       "gallery": gallery[]->fileURL
+  12 |     }
+> 13 |   `, { slug: params.slug })
+     |                     ^
+  14 |
+  15 |   if (!event) {
+  16 |     return (
+Error: Route "/event/[slug]" used `params.slug`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at EventGallery (src/app/event/[slug]/page.tsx:13:21)
+  11 |       "gallery": gallery[]->fileURL
+  12 |     }
+> 13 |   `, { slug: params.slug })
+     |                     ^
+  14 |
+  15 |   if (!event) {
+  16 |     return (
+⨯ Error: GROQ query parse error:
+  1 |
+> 2 |     *[_type == "featuredEvent" && slug.current == $slug][0] {
+    |                                                  ^^^^ param $slug referenced, but not provided
+  3 |       title,
+  4 |       location,
+  5 |       date,
+(traceId: 646f45d9629e34b400a159e3ad933778)
+    at ignore-listed frames {
+  response: {
+    body: { error: [Object] },
+    url: 'https://6m6rw2f8.apicdn.sanity.io/v2024-05-08/data/query/production?query=%0A++++*%5B_type+%3D%3D+%22featuredEvent%22+%26%26+slug.current+%3D%3D+%24slug%5D%5B0%5D+%7B%0A++++++title%2C%0A++++++location%2C%0A++++++date%2C%0A++++++%22gallery%22%3A+gallery%5B%5D-%3EfileURL%0A++++%7D%0A++&returnQuery=false',
+    method: 'GET',
+    headers: [Object: null prototype] {
+      'alt-svc': 'h3=":443"; ma=2592000',
+      'apicdn-cache-control': '',
+      'cache-control': 'private, max-age=3',
+      'content-encoding': 'br',
+      'content-length': '194',
+      'content-type': 'application/json; charset=utf-8',
+      date: 'Thu, 07 May 2026 20:34:04 GMT',
+      'sanity-gateway': 'k8s-gcp-as-s1-prod-ing-01',
+      'sanity-inflight-current': '0',
+      'sanity-inflight-limit': '500',
+      'sanity-query-class': 'normal',
+      'server-timing': 'api;dur=10',
+      'strict-transport-security': 'max-age=63072000; includeSubDomains; preload',
+      traceparent: '00-646f45d9629e34b400a159e3ad933778-1a3a8e5982cc2d1b-01',
+      vary: 'accept-encoding, origin',
+      via: '1.1 google',
+      'x-sanity-age': '0',
+      'x-sanity-shard': 'gcp-eu-w1-01-prod-1015'
+    },
+    statusCode: 400,
+    statusMessage: 'Bad Request'
+  },
+  statusCode: 400,
+  responseBody: '{\n' +
+    '  "error": {\n' +
+    '    "description": "param $slug referenced, but not provided",\n' +
+    '    "end": 55,\n' +
+    '    "query": "\\n    *[_type == \\"featuredEvent\\" && slug.current == $slug][0] {\\n      title,\\n      location,\\n      date,\\n      \\"gallery\\": gallery[]->fileURL\\n    }\\n  ",\n' +
+    '    "start": 51,\n' +
+    '    "type": "queryParseError"\n' +
+    '  }\n' +
+    '}',
+  traceId: '646f45d9629e34b400a159e3ad933778',
+  details: {
+    description: 'param $slug referenced, but not provided',
+    end: 55,
+    query: '\n' +
+      '    *[_type == "featuredEvent" && slug.current == $slug][0] {\n' +
+      '      title,\n' +
+      '      location,\n' +
+      '      date,\n' +
+      '      "gallery": gallery[]->fileURL\n' +
+      '    }\n' +
+      '  ',
+    start: 51,
+    type: 'queryParseError'
+  },
+  digest: '394883578'
+}
+ GET /event/yaga%202025 200 in 464ms (next.js: 1543µs, application-code: 462ms)
+⨯ Error: GROQ query parse error:
+  1 |
+> 2 |     *[_type == "featuredEvent" && slug.current == $slug][0] {
+    |                                                  ^^^^ param $slug referenced, but not provided
+  3 |       title,
+  4 |       location,
+  5 |       date,
+(traceId: 646f45d9629e34b400a159e3ad933778)
+    at ignore-listed frames {
+  response: {
+    body: { error: [Object] },
+    url: 'https://6m6rw2f8.apicdn.sanity.io/v2024-05-08/data/query/production?query=%0A++++*%5B_type+%3D%3D+%22featuredEvent%22+%26%26+slug.current+%3D%3D+%24slug%5D%5B0%5D+%7B%0A++++++title%2C%0A++++++location%2C%0A++++++date%2C%0A++++++%22gallery%22%3A+gallery%5B%5D-%3EfileURL%0A++++%7D%0A++&returnQuery=false',
+    method: 'GET',
+    headers: [Object: null prototype] {
+      'alt-svc': 'h3=":443"; ma=2592000',
+      'apicdn-cache-control': '',
+      'cache-control': 'private, max-age=3',
+      'content-encoding': 'br',
+      'content-length': '194',
+      'content-type': 'application/json; charset=utf-8',
+      date: 'Thu, 07 May 2026 20:34:04 GMT',
+      'sanity-gateway': 'k8s-gcp-as-s1-prod-ing-01',
+      'sanity-inflight-current': '0',
+      'sanity-inflight-limit': '500',
+      'sanity-query-class': 'normal',
+      'server-timing': 'api;dur=10',
+      'strict-transport-security': 'max-age=63072000; includeSubDomains; preload',
+      traceparent: '00-646f45d9629e34b400a159e3ad933778-1a3a8e5982cc2d1b-01',
+      vary: 'accept-encoding, origin',
+      via: '1.1 google',
+      'x-sanity-age': '0',
+      'x-sanity-shard': 'gcp-eu-w1-01-prod-1015'
+    },
+    statusCode: 400,
+    statusMessage: 'Bad Request'
+  },
+  statusCode: 400,
+  responseBody: '{\n' +
+    '  "error": {\n' +
+    '    "description": "param $slug referenced, but not provided",\n' +
+    '    "end": 55,\n' +
+    '    "query": "\\n    *[_type == \\"featuredEvent\\" && slug.current == $slug][0] {\\n      title,\\n      location,\\n      date,\\n      \\"gallery\\": gallery[]->fileURL\\n    }\\n  ",\n' +
+    '    "start": 51,\n' +
+    '    "type": "queryParseError"\n' +
+    '  }\n' +
+    '}',
+  traceId: '646f45d9629e34b400a159e3ad933778',
+  details: {
+    description: 'param $slug referenced, but not provided',
+    end: 55,
+    query: '\n' +
+      '    *[_type == "featuredEvent" && slug.current == $slug][0] {\n' +
+      '      title,\n' +
+      '      location,\n' +
+      '      date,\n' +
+      '      "gallery": gallery[]->fileURL\n' +
+      '    }\n' +
+      '  ',
+    start: 51,
+    type: 'queryParseError'
+  },
+  digest: '394883578'
+}
+ GET /event/yaga%202025 200 in 1815ms (next.js: 1314ms, application-code: 501ms)
+[browser] Uncaught Error: GROQ query parse error:
+  1 |
+> 2 |     *[_type == "featuredEvent" && slug.current == $slug][0] {
+    |                                                  ^^^^ param $slug referenced, but not provided
+  3 |       title,
+  4 |       location,
+  5 |       date,
+(traceId: 646f45d9629e34b400a159e3ad933778)
+Error: Route "/event/[slug]" used `params.slug`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at EventGallery (src/app/event/[slug]/page.tsx:13:21)
+  11 |       "gallery": gallery[]->fileURL
+  12 |     }
+> 13 |   `, { slug: params.slug })
+     |                     ^
+  14 |
+  15 |   if (!event) {
+  16 |     return (
+⨯ Error: GROQ query parse error:
+  1 |
+> 2 |     *[_type == "featuredEvent" && slug.current == $slug][0] {
+    |                                                  ^^^^ param $slug referenced, but not provided
+  3 |       title,
+  4 |       location,
+  5 |       date,
+(traceId: c7f1a620d99e3feeeb511114c7714090)
+    at ignore-listed frames {
+  response: {
+    body: { error: [Object] },
+    url: 'https://6m6rw2f8.apicdn.sanity.io/v2024-05-08/data/query/production?query=%0A++++*%5B_type+%3D%3D+%22featuredEvent%22+%26%26+slug.current+%3D%3D+%24slug%5D%5B0%5D+%7B%0A++++++title%2C%0A++++++location%2C%0A++++++date%2C%0A++++++%22gallery%22%3A+gallery%5B%5D-%3EfileURL%0A++++%7D%0A++&returnQuery=false',
+    method: 'GET',
+    headers: [Object: null prototype] {
+      'alt-svc': 'h3=":443"; ma=2592000',
+      'apicdn-cache-control': '',
+      'cache-control': 'private, max-age=3',
+      'content-encoding': 'br',
+      'content-length': '194',
+      'content-type': 'application/json; charset=utf-8',
+      date: 'Thu, 07 May 2026 20:34:10 GMT',
+      'sanity-gateway': 'k8s-gcp-as-s1-prod-ing-01',
+      'sanity-inflight-current': '0',
+      'sanity-inflight-limit': '500',
+      'sanity-query-class': 'normal',
+      'server-timing': 'api;dur=10',
+      'strict-transport-security': 'max-age=63072000; includeSubDomains; preload',
+      traceparent: '00-c7f1a620d99e3feeeb511114c7714090-e5ec6b3b0d074ac5-01',
+      vary: 'accept-encoding, origin',
+      via: '1.1 google',
+      'x-sanity-age': '0',
+      'x-sanity-shard': 'gcp-eu-w1-01-prod-1015'
+    },
+    statusCode: 400,
+    statusMessage: 'Bad Request'
+  },
+  statusCode: 400,
+  responseBody: '{\n' +
+    '  "error": {\n' +
+    '    "description": "param $slug referenced, but not provided",\n' +
+    '    "end": 55,\n' +
+    '    "query": "\\n    *[_type == \\"featuredEvent\\" && slug.current == $slug][0] {\\n      title,\\n      location,\\n      date,\\n      \\"gallery\\": gallery[]->fileURL\\n    }\\n  ",\n' +
+    '    "start": 51,\n' +
+    '    "type": "queryParseError"\n' +
+    '  }\n' +
+    '}',
+  traceId: 'c7f1a620d99e3feeeb511114c7714090',
+  details: {
+    description: 'param $slug referenced, but not provided',
+    end: 55,
+    query: '\n' +
+      '    *[_type == "featuredEvent" && slug.current == $slug][0] {\n' +
+      '      title,\n' +
+      '      location,\n' +
+      '      date,\n' +
+      '      "gallery": gallery[]->fileURL\n' +
+      '    }\n' +
+      '  ',
+    start: 51,
+    type: 'queryParseError'
+  },
+  digest: '544868154'
+}
+ GET /event/yaga%202025? 500 in 563ms (next.js: 8ms, application-code: 555ms)
+[browser] Uncaught Error: GROQ query parse error:
+  1 |
+> 2 |     *[_type == "featuredEvent" && slug.current == $slug][0] {
+    |                                                  ^^^^ param $slug referenced, but not provided
+  3 |       title,
+  4 |       location,
+  5 |       date,
+(traceId: c7f1a620d99e3feeeb511114c7714090)
+ GET /event 404 in 47ms (next.js: 21ms, application-code: 26ms)
+An empty string ("") was passed to the src attribute. This may cause the browser to download the whole page again over the network. To fix this, either do not render the element at all or pass null to src instead of an empty string.
+ GET / 200 in 335ms (next.js: 5ms, application-code: 331ms)
+[browser] An empty string ("") was passed to the src attribute. This may cause the browser to download the whole page again over the network. To fix this, either do not render the element at all or pass null to src instead of an empty string. 
+[browser] Image is missing required "src" property: [object HTMLImageElement] 
+[browser] Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly. (<anonymous>)
+Error: Route "/event/[slug]" used `params.slug`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at EventGallery (src/app/event/[slug]/page.tsx:13:21)
+  11 |       "gallery": gallery[]->fileURL
+  12 |     }
+> 13 |   `, { slug: params.slug })
+     |                     ^
+  14 |
+  15 |   if (!event) {
+  16 |     return (
+⨯ Error: GROQ query parse error:
+  1 |
+> 2 |     *[_type == "featuredEvent" && slug.current == $slug][0] {
+    |                                                  ^^^^ param $slug referenced, but not provided
+  3 |       title,
+  4 |       location,
+  5 |       date,
+(traceId: 14ad06bf9a1bfed48fd7341902992e20)
+    at ignore-listed frames {
+  response: {
+    body: { error: [Object] },
+    url: 'https://6m6rw2f8.apicdn.sanity.io/v2024-05-08/data/query/production?query=%0A++++*%5B_type+%3D%3D+%22featuredEvent%22+%26%26+slug.current+%3D%3D+%24slug%5D%5B0%5D+%7B%0A++++++title%2C%0A++++++location%2C%0A++++++date%2C%0A++++++%22gallery%22%3A+gallery%5B%5D-%3EfileURL%0A++++%7D%0A++&returnQuery=false',
+    method: 'GET',
+    headers: [Object: null prototype] {
+      'alt-svc': 'h3=":443"; ma=2592000',
+      'apicdn-cache-control': '',
+      'cache-control': 'private, max-age=3',
+      'content-encoding': 'br',
+      'content-length': '194',
+      'content-type': 'application/json; charset=utf-8',
+      date: 'Thu, 07 May 2026 20:34:42 GMT',
+      'sanity-gateway': 'k8s-gcp-as-s1-prod-ing-01',
+      'sanity-inflight-current': '0',
+      'sanity-inflight-limit': '500',
+      'sanity-query-class': 'normal',
+      'server-timing': 'api;dur=10',
+      'strict-transport-security': 'max-age=63072000; includeSubDomains; preload',
+      traceparent: '00-14ad06bf9a1bfed48fd7341902992e20-fa54a73462df3880-01',
+      vary: 'accept-encoding, origin',
+      via: '1.1 google',
+      'x-sanity-age': '0',
+      'x-sanity-shard': 'gcp-eu-w1-01-prod-1015'
+    },
+    statusCode: 400,
+    statusMessage: 'Bad Request'
+  },
+  statusCode: 400,
+  responseBody: '{\n' +
+    '  "error": {\n' +
+    '    "description": "param $slug referenced, but not provided",\n' +
+    '    "end": 55,\n' +
+    '    "query": "\\n    *[_type == \\"featuredEvent\\" && slug.current == $slug][0] {\\n      title,\\n      location,\\n      date,\\n      \\"gallery\\": gallery[]->fileURL\\n    }\\n  ",\n' +
+    '    "start": 51,\n' +
+    '    "type": "queryParseError"\n' +
+    '  }\n' +
+    '}',
+  traceId: '14ad06bf9a1bfed48fd7341902992e20',
+  details: {
+    description: 'param $slug referenced, but not provided',
+    end: 55,
+    query: '\n' +
+      '    *[_type == "featuredEvent" && slug.current == $slug][0] {\n' +
+      '      title,\n' +
+      '      location,\n' +
+      '      date,\n' +
+      '      "gallery": gallery[]->fileURL\n' +
+      '    }\n' +
+      '  ',
+    start: 51,
+    type: 'queryParseError'
+  },
+  digest: '457455226'
+}
+ GET /event/yaga%202025 200 in 464ms (next.js: 10ms, application-code: 454ms)
+[browser] Uncaught Error: GROQ query parse error:
+  1 |
+> 2 |     *[_type == "featuredEvent" && slug.current == $slug][0] {
+    |                                                  ^^^^ param $slug referenced, but not provided
+  3 |       title,
+  4 |       location,
+  5 |       date,
+(traceId: 14ad06bf9a1bfed48fd7341902992e20)
+Error: Route "/event/[slug]" used `params.slug`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at EventGallery (src/app/event/[slug]/page.tsx:13:21)
+  11 |       "gallery": gallery[]->fileURL
+  12 |     }
+> 13 |   `, { slug: params.slug })
+     |                     ^
+  14 |
+  15 |   if (!event) {
+  16 |     return (
+ GET /studio/structure/featuredEvent;e8aafe36-e011-45ab-94ab-51e32c05fd31%2Ctemplate%3DfeaturedEvent 200 in 16ms (next.js: 5ms, application-code: 11ms)
+✓ Compiled in 180ms
+⨯ Error: GROQ query parse error:
+  1 |
+> 2 |     *[_type == "featuredEvent" && slug.current == $slug][0] {
+    |                                                  ^^^^ param $slug referenced, but not provided
+  3 |       title,
+  4 |       location,
+  5 |       date,
+(traceId: db4168661065fa975a4d0c8ce4dd0508)
+    at ignore-listed frames {
+  response: {
+    body: { error: [Object] },
+    url: 'https://6m6rw2f8.apicdn.sanity.io/v2024-05-08/data/query/production?query=%0A++++*%5B_type+%3D%3D+%22featuredEvent%22+%26%26+slug.current+%3D%3D+%24slug%5D%5B0%5D+%7B%0A++++++title%2C%0A++++++location%2C%0A++++++date%2C%0A++++++%22gallery%22%3A+gallery%5B%5D-%3EfileURL%0A++++%7D%0A++&returnQuery=false',
+    method: 'GET',
+    headers: [Object: null prototype] {
+      'alt-svc': 'h3=":443"; ma=2592000',
+      'apicdn-cache-control': '',
+      'cache-control': 'private, max-age=3',
+      'content-encoding': 'br',
+      'content-length': '194',
+      'content-type': 'application/json; charset=utf-8',
+      date: 'Thu, 07 May 2026 20:35:17 GMT',
+      'sanity-gateway': 'k8s-gcp-as-s1-prod-ing-01',
+      'sanity-inflight-current': '0',
+      'sanity-inflight-limit': '500',
+      'sanity-query-class': 'normal',
+      'server-timing': 'api;dur=11',
+      'strict-transport-security': 'max-age=63072000; includeSubDomains; preload',
+      traceparent: '00-db4168661065fa975a4d0c8ce4dd0508-92e334340e2f48f9-01',
+      vary: 'accept-encoding, origin',
+      via: '1.1 google',
+      'x-sanity-age': '0',
+      'x-sanity-shard': 'gcp-eu-w1-01-prod-1015'
+    },
+    statusCode: 400,
+    statusMessage: 'Bad Request'
+  },
+  statusCode: 400,
+  responseBody: '{\n' +
+    '  "error": {\n' +
+    '    "description": "param $slug referenced, but not provided",\n' +
+    '    "end": 55,\n' +
+    '    "query": "\\n    *[_type == \\"featuredEvent\\" && slug.current == $slug][0] {\\n      title,\\n      location,\\n      date,\\n      \\"gallery\\": gallery[]->fileURL\\n    }\\n  ",\n' +
+    '    "start": 51,\n' +
+    '    "type": "queryParseError"\n' +
+    '  }\n' +
+    '}',
+  traceId: 'db4168661065fa975a4d0c8ce4dd0508',
+  details: {
+    description: 'param $slug referenced, but not provided',
+    end: 55,
+    query: '\n' +
+      '    *[_type == "featuredEvent" && slug.current == $slug][0] {\n' +
+      '      title,\n' +
+      '      location,\n' +
+      '      date,\n' +
+      '      "gallery": gallery[]->fileURL\n' +
+      '    }\n' +
+      '  ',
+    start: 51,
+    type: 'queryParseError'
+  },
+  digest: '2902474554'
+}
+ GET /event/yaga%202025 500 in 589ms (next.js: 2ms, application-code: 587ms)
+[browser] Uncaught Error: GROQ query parse error:
+  1 |
+> 2 |     *[_type == "featuredEvent" && slug.current == $slug][0] {
+    |                                                  ^^^^ param $slug referenced, but not provided
+  3 |       title,
+  4 |       location,
+  5 |       date,
+(traceId: db4168661065fa975a4d0c8ce4dd0508)
+⚠ Found a change in next.config.ts. Restarting the server to apply the changes...
+▲ Next.js 16.2.5 (Turbopack)
+- Local:         http://localhost:3002
+- Network:       http://192.168.1.65:3002
+- Environments: .env.local
+✓ Ready in 236ms
+
+Error: Route "/event/[slug]" used `params.slug`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at EventGallery (src/app/event/[slug]/page.tsx:13:21)
+  11 |       "gallery": gallery[]->fileURL
+  12 |     }
+> 13 |   `, { slug: params.slug })
+     |                     ^
+  14 |
+  15 |   if (!event) {
+  16 |     return (
+ GET /studio/structure/featuredEvent;e8aafe36-e011-45ab-94ab-51e32c05fd31%2Ctemplate%3DfeaturedEvent 200 in 649ms (next.js: 504ms, application-code: 146ms)
+⨯ Error: GROQ query parse error:
+  1 |
+> 2 |     *[_type == "featuredEvent" && slug.current == $slug][0] {
+    |                                                  ^^^^ param $slug referenced, but not provided
+  3 |       title,
+  4 |       location,
+  5 |       date,
+(traceId: 2323627b871d905995bbdc5cea724456)
+    at ignore-listed frames {
+  response: {
+    body: { error: [Object] },
+    url: 'https://6m6rw2f8.apicdn.sanity.io/v2024-05-08/data/query/production?query=%0A++++*%5B_type+%3D%3D+%22featuredEvent%22+%26%26+slug.current+%3D%3D+%24slug%5D%5B0%5D+%7B%0A++++++title%2C%0A++++++location%2C%0A++++++date%2C%0A++++++%22gallery%22%3A+gallery%5B%5D-%3EfileURL%0A++++%7D%0A++&returnQuery=false',
+    method: 'GET',
+    headers: [Object: null prototype] {
+      'alt-svc': 'h3=":443"; ma=2592000',
+      'apicdn-cache-control': '',
+      'cache-control': 'private, max-age=3',
+      'content-encoding': 'br',
+      'content-length': '194',
+      'content-type': 'application/json; charset=utf-8',
+      date: 'Thu, 07 May 2026 20:36:53 GMT',
+      'sanity-gateway': 'k8s-gcp-as-s1-prod-ing-01',
+      'sanity-inflight-current': '0',
+      'sanity-inflight-limit': '500',
+      'sanity-query-class': 'normal',
+      'server-timing': 'api;dur=12',
+      'strict-transport-security': 'max-age=63072000; includeSubDomains; preload',
+      traceparent: '00-2323627b871d905995bbdc5cea724456-3fb16d1edf56bf4a-01',
+      vary: 'accept-encoding, origin',
+      via: '1.1 google',
+      'x-sanity-age': '0',
+      'x-sanity-shard': 'gcp-eu-w1-01-prod-1015'
+    },
+    statusCode: 400,
+    statusMessage: 'Bad Request'
+  },
+  statusCode: 400,
+  responseBody: '{\n' +
+    '  "error": {\n' +
+    '    "description": "param $slug referenced, but not provided",\n' +
+    '    "end": 55,\n' +
+    '    "query": "\\n    *[_type == \\"featuredEvent\\" && slug.current == $slug][0] {\\n      title,\\n      location,\\n      date,\\n      \\"gallery\\": gallery[]->fileURL\\n    }\\n  ",\n' +
+    '    "start": 51,\n' +
+    '    "type": "queryParseError"\n' +
+    '  }\n' +
+    '}',
+  traceId: '2323627b871d905995bbdc5cea724456',
+  details: {
+    description: 'param $slug referenced, but not provided',
+    end: 55,
+    query: '\n' +
+      '    *[_type == "featuredEvent" && slug.current == $slug][0] {\n' +
+      '      title,\n' +
+      '      location,\n' +
+      '      date,\n' +
+      '      "gallery": gallery[]->fileURL\n' +
+      '    }\n' +
+      '  ',
+    start: 51,
+    type: 'queryParseError'
+  },
+  digest: '3700247135'
+}
+ GET /event/yaga%202025 500 in 1355ms (next.js: 597ms, application-code: 758ms)
+  Reload env: .env.local
+Error: Route "/event/[slug]" used `params.slug`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at EventGallery (src/app/event/[slug]/page.tsx:13:21)
+  11 |       "gallery": gallery[]->fileURL
+  12 |     }
+> 13 |   `, { slug: params.slug })
+     |                     ^
+  14 |
+  15 |   if (!event) {
+  16 |     return (
+ GET /studio/structure/featuredEvent;e8aafe36-e011-45ab-94ab-51e32c05fd31%2Ctemplate%3DfeaturedEvent 200 in 134ms (next.js: 119ms, application-code: 15ms)
+⨯ Error: GROQ query parse error:
+  1 |
+> 2 |     *[_type == "featuredEvent" && slug.current == $slug][0] {
+    |                                                  ^^^^ param $slug referenced, but not provided
+  3 |       title,
+  4 |       location,
+  5 |       date,
+(traceId: 3d514a23d51906a62f2ff080d49f7fbc)
+    at ignore-listed frames {
+  response: {
+    body: { error: [Object] },
+    url: 'https://6m6rw2f8.apicdn.sanity.io/v2024-05-08/data/query/production?query=%0A++++*%5B_type+%3D%3D+%22featuredEvent%22+%26%26+slug.current+%3D%3D+%24slug%5D%5B0%5D+%7B%0A++++++title%2C%0A++++++location%2C%0A++++++date%2C%0A++++++%22gallery%22%3A+gallery%5B%5D-%3EfileURL%0A++++%7D%0A++&returnQuery=false',
+    method: 'GET',
+    headers: [Object: null prototype] {
+      'alt-svc': 'h3=":443"; ma=2592000',
+      'apicdn-cache-control': '',
+      'cache-control': 'private, max-age=3',
+      'content-encoding': 'br',
+      'content-length': '194',
+      'content-type': 'application/json; charset=utf-8',
+      date: 'Thu, 07 May 2026 20:38:09 GMT',
+      'sanity-gateway': 'k8s-gcp-as-s1-prod-ing-01',
+      'sanity-inflight-current': '0',
+      'sanity-inflight-limit': '500',
+      'sanity-query-class': 'normal',
+      'server-timing': 'api;dur=9',
+      'strict-transport-security': 'max-age=63072000; includeSubDomains; preload',
+      traceparent: '00-3d514a23d51906a62f2ff080d49f7fbc-f9b4fad7b62430f3-01',
+      vary: 'accept-encoding, origin',
+      via: '1.1 google',
+      'x-sanity-age': '0',
+      'x-sanity-shard': 'gcp-eu-w1-01-prod-1015'
+    },
+    statusCode: 400,
+    statusMessage: 'Bad Request'
+  },
+  statusCode: 400,
+  responseBody: '{\n' +
+    '  "error": {\n' +
+    '    "description": "param $slug referenced, but not provided",\n' +
+    '    "end": 55,\n' +
+    '    "query": "\\n    *[_type == \\"featuredEvent\\" && slug.current == $slug][0] {\\n      title,\\n      location,\\n      date,\\n      \\"gallery\\": gallery[]->fileURL\\n    }\\n  ",\n' +
+    '    "start": 51,\n' +
+    '    "type": "queryParseError"\n' +
+    '  }\n' +
+    '}',
+  traceId: '3d514a23d51906a62f2ff080d49f7fbc',
+  details: {
+    description: 'param $slug referenced, but not provided',
+    end: 55,
+    query: '\n' +
+      '    *[_type == "featuredEvent" && slug.current == $slug][0] {\n' +
+      '      title,\n' +
+      '      location,\n' +
+      '      date,\n' +
+      '      "gallery": gallery[]->fileURL\n' +
+      '    }\n' +
+      '  ',
+    start: 51,
+    type: 'queryParseError'
+  },
+  digest: '3941860639'
+}
+ GET /event/yaga%202025 500 in 532ms (next.js: 42ms, application-code: 490ms)
+[?25h

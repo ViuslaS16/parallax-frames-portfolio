@@ -150,12 +150,22 @@ export default function ClientPage({
           <CornerMarks />
         </div>
 
+
         {/* Central text */}
-        <div className="z-10 text-center px-4">
-          {/* NIGHTLIFE — letter reveal */}
-          <h1 className="text-[12vw] font-black uppercase tracking-tighter leading-none select-none">
-            <span className="inline-flex overflow-hidden">
-              {'NIGHTLIFE'.split('').map((char, i) => (
+        <div className="z-10 text-center px-4 w-full">
+          {/* PARALLAX — letter reveal with TV flicker */}
+          <h1 className="font-black uppercase tracking-tighter leading-none select-none flex flex-col items-center">
+            <motion.span 
+              className="inline-flex overflow-hidden text-[14vw] sm:text-[12vw] md:text-[10vw]"
+              animate={{ opacity: [1, 0.7, 1, 1, 0.4, 1, 1, 0.8, 1, 1, 0.5, 1, 1] }}
+              transition={{ 
+                duration: 3, 
+                repeat: Infinity,
+                times: [0, 0.05, 0.1, 0.3, 0.35, 0.4, 0.6, 0.65, 0.7, 0.9, 0.95, 0.98, 1],
+                ease: "linear"
+              }}
+            >
+              {'PARALLAX'.split('').map((char, i) => (
                 <motion.span
                   key={i}
                   initial={{ y: '110%', opacity: 0 }}
@@ -166,11 +176,10 @@ export default function ClientPage({
                   {char}
                 </motion.span>
               ))}
-            </span>
-            <br />
-            {/* ARCHIVE — delayed, dimmed */}
-            <span className="inline-flex overflow-hidden">
-              {'ARCHIVE'.split('').map((char, i) => (
+            </motion.span>
+            {/* NIGHT LIFE ARCHIVE — delayed, dimmed */}
+            <span className="inline-flex overflow-hidden text-[6vw] sm:text-[5vw] md:text-[4vw] mt-2 whitespace-nowrap">
+              {'NIGHT LIFE ARCHIVE'.split('').map((char, i) => (
                 <motion.span
                   key={i}
                   initial={{ y: '110%', opacity: 0 }}
@@ -178,7 +187,7 @@ export default function ClientPage({
                   transition={{ duration: 0.8, delay: 0.8 + i * 0.06, ease }}
                   className="inline-block text-zinc-600"
                 >
-                  {char}
+                  {char === ' ' ? '\u00A0' : char}
                 </motion.span>
               ))}
             </span>

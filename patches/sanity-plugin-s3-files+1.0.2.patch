@@ -1,0 +1,50 @@
+diff --git a/node_modules/sanity-plugin-s3-files/build/esm/uploadFile.js b/node_modules/sanity-plugin-s3-files/build/esm/uploadFile.js
+index b2e1797..c5544c9 100644
+--- a/node_modules/sanity-plugin-s3-files/build/esm/uploadFile.js
++++ b/node_modules/sanity-plugin-s3-files/build/esm/uploadFile.js
+@@ -38,7 +38,7 @@ const uploadFile = ({ credentials, onError, onSuccess, file, fileName, }) => {
+         signal,
+     })
+         .then((response) => response.json())
+-        .then(({ url, fields }) => {
++        .then(({ url, fields, fileURL: publicFileURL }) => {
+         if (!url || !URL.canParse(url)) {
+             onError({
+                 message: "Ask your developer to rectify the AWS Lambda function that returns the asset's pre-signed url.",
+@@ -86,8 +86,10 @@ const uploadFile = ({ credentials, onError, onSuccess, file, fileName, }) => {
+         presignedPromise
+             .then((res) => {
+             if (res.ok) {
++                // FORCE the use of our R2 public URL
++                const r2PublicUrl = `https://pub-53dfba8fed9d48d3b927c25e22eb9cb1.r2.dev/${fileKey}`;
+                 onSuccess({
+-                    fileURL: `https://s3.${credentials.bucketRegion}.amazonaws.com/${credentials.bucketKey}/${fileKey}`,
++                    fileURL: r2PublicUrl,
+                     s3: {
+                         key: fileKey,
+                         bucket: credentials.bucketKey,
+diff --git a/node_modules/sanity-plugin-s3-files/build/uploadFile.js b/node_modules/sanity-plugin-s3-files/build/uploadFile.js
+index 55eddbf..54b6e77 100644
+--- a/node_modules/sanity-plugin-s3-files/build/uploadFile.js
++++ b/node_modules/sanity-plugin-s3-files/build/uploadFile.js
+@@ -40,7 +40,7 @@ const uploadFile = ({ credentials, onError, onSuccess, file, fileName, }) => {
+         signal,
+     })
+         .then((response) => response.json())
+-        .then(({ url, fields }) => {
++        .then(({ url, fields, fileURL: publicFileURL }) => {
+         if (!url || !URL.canParse(url)) {
+             onError({
+                 message: "Ask your developer to rectify the AWS Lambda function that returns the asset's pre-signed url.",
+@@ -88,8 +88,10 @@ const uploadFile = ({ credentials, onError, onSuccess, file, fileName, }) => {
+         presignedPromise
+             .then((res) => {
+             if (res.ok) {
++                // FORCE the use of our R2 public URL
++                const r2PublicUrl = `https://pub-53dfba8fed9d48d3b927c25e22eb9cb1.r2.dev/${fileKey}`;
+                 onSuccess({
+-                    fileURL: `https://s3.${credentials.bucketRegion}.amazonaws.com/${credentials.bucketKey}/${fileKey}`,
++                    fileURL: r2PublicUrl,
+                     s3: {
+                         key: fileKey,
+                         bucket: credentials.bucketKey,
